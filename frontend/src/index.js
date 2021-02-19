@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './index.css';
 
 import ReactDOM from 'react-dom';
@@ -26,10 +26,20 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 function Root() {
+  const [ dropDownShown, setDropDownShown] = useState(false)
+  useEffect(()=>{
+    document.addEventListener('click', (e)=> {
+      if(e.target.id === 'showDD') setDropDownShown(true)
+      else{
+        setDropDownShown(false)
+      }
+    })
+    // return document.removeEventListener('click', ()=>{})
+  },[dropDownShown])
   return (
     <Provider store={ store }>
       <BrowserRouter>
-      <Navigation />
+      <Navigation dropDownShown={dropDownShown} setDropDown={setDropDownShown}/>
         <Switch>
           <Route exact path="/">
             <App />

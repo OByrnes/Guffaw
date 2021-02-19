@@ -7,7 +7,7 @@ const DropDown = ({user}) => {
     dispatch(logOutUser(user))
   }
   return (
-    <ul>
+    <ul className="drop-down">
       <li>
         {(user) ? <button onClick={handleSignOut} className="btn signOut">Sign Out</button> : <div className="Login_holder"> <NavLink className="Loginbtn" to="/login">Log In</NavLink> </div>} 
       </li>

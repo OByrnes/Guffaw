@@ -5,7 +5,7 @@ import {logOutUser} from "../../store/session"
 import logourl from "../../images/guffawLogo1.png"
 import './index.css'
 import DropDown from '../DropDown/index.js'
-const Navigation = ({dropDownShown, setDropDown}) => {
+const Navigation = ({dropDownShown, setDropDownShown}) => {
   
   const { user } = useSelector((state)=> state.session)
   const dispatch = useDispatch()
@@ -19,10 +19,12 @@ const Navigation = ({dropDownShown, setDropDown}) => {
        <NavLink to="/">
             <img id="logo" src={logourl} height="100px" />
         </NavLink>
-        <i class="fas fa-search"></i>
-        {/* <i class="far fa-user" onClick={setDropDownShown(true)}> */}
-         <DropDown hidden={dropDownShown} user={user}/> 
-        {/* </i>  */}
+        <div>
+          <i className="fas fa-search search"></i>
+          <i className="far fa-user user" id="showDD">
+          </i>  
+        </div>
+        {(dropDownShown)? <DropDown className="drop-down" user={user}/> : null}
 
     </nav>
   )
