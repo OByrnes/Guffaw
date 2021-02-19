@@ -24,7 +24,7 @@ const LoginFormPage = () => {
   const {user} = useSelector((state)=> state.session)
   if(user !== null) return <Redirect to="/" />
   return(
-    <div className login_container>
+    <div className="login_container">
       <div>
         <ul>
           {errors && errors.map(error => (

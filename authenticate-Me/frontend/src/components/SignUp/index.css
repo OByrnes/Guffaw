@@ -1,6 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Truculenta:wght@100;600&display=swap');
-.login_container{
+form input{
+  width: 200px;
+  padding: 10px;
+  margin: 20px;
+}
+form{
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+  margin: auto;
+  font-family: "Open sans";
+}
+.form-container{
   width: fit-content;
   margin: 30px;
   display: flex;
@@ -12,30 +23,11 @@
   font-family: "open sans", sans-serif;
   color:rgba( 229, 229, 229, 1);
 }
-.login_container li{
-  text-decoration: none;
-  font-weight: bold;
-  padding: 10px;
-}
-form{
+.form-container form{
   display: flex;
   flex-direction: column;
   align-content: space-around;
-  margin: auto;
-  font-family: "Open sans";
 }
-
-form input{
-  width: 200px;
-  padding: 10px;
-  margin: 20px;
-}
-
-form .submit-btn{
-  background-color: rgba(252, 163, 17, .8);
-  border: none;
-  margin: auto;
-  padding: 10px;
-  padding-bottom: 20px;
-  width: 130px;
+.radio-holder{
+  display: flex;
 }

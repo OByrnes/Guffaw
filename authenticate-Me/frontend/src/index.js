@@ -35,8 +35,10 @@ function Root() {
             <App />
           </Route>
           <Route path="/login">
-            <LoginFormPage />
-            <SignUp />
+            <div className="form-main-page">
+              <LoginFormPage />
+              <SignUp />
+            </div>
           </Route>
         </Switch>
       </BrowserRouter>

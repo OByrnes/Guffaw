@@ -14,8 +14,8 @@ function App() {
   useEffect(()=> {
     dispatch(sessionActions.restoreUserThunk()).then(()=> setIsLoaded(true))
   }, [dispatch])
+  const [ dropDownShown, setDropDownShown] = useState(false)
   const {user} = useSelector((state)=> state.session)
-  if(user === null) return <Redirect to="/login" />
   return isLoaded && (
     <>
     

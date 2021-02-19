@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { createUserThunk } from "../../store/session"
-
+import "./index.css"
 
 
 const SignUp = () => {
@@ -43,6 +43,7 @@ const SignUp = () => {
         <input placeholder="Email" type="email" value={email} onChange={(e)=> setEmail(e.target.value)}/>
         <input placeholder="Password" type="password" value={password} onChange={(e)=> setPassword(e.target.value)}/>
         <input placeholder="Confirm your password" type="Password" value={confirmPassword} onChange={(e)=> setConfirmedPassword(e.target.value)}/>
+        <div className="radio-holder">
         <label>
           <input
             type="radio"
@@ -63,6 +64,8 @@ const SignUp = () => {
           />
           Fan
         </label>
+
+        </div>
         <button type="submit" disabled={errors.length > 0}>Sign Up</button>
         
       </form>

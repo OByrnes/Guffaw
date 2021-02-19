@@ -1,5 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Truculenta:wght@100;600&display=swap');
 body{
-  background-color: #e5e5e5;
+  background-color: #FFFFFF;
   margin: none;
   padding: 0px;
+}
+
+.form-main-page{
+  display: flex;
+  justify-content: space-evenly;
 }

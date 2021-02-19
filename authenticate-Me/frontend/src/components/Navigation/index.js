@@ -4,23 +4,26 @@ import {NavLink} from "react-router-dom";
 import {logOutUser} from "../../store/session"
 import logourl from "../../images/guffawLogo1.png"
 import './index.css'
-const Navigation = () => {
-
-  const {user} = useSelector((state)=> state.session)
+import DropDown from '../DropDown/index.js'
+const Navigation = ({dropDownShown, setDropDown}) => {
+  
+  const { user } = useSelector((state)=> state.session)
   const dispatch = useDispatch()
-  const handleSignOut = ()=> {
-    dispatch(logOutUser(user))
-  }
+  // const handleSignOut = ()=> {
+  //   dispatch(logOutUser(user))
+  // }
+  
 
   return (
     <nav>
-      <div>
-        <NavLink to="/">
-          <img id="logo" src={logourl} height="100px" />
+       <NavLink to="/">
+            <img id="logo" src={logourl} height="100px" />
         </NavLink>
-      </div>
-      
-      {(user) ? <button onClick={handleSignOut} className="btn signOut">Sign Out</button> : <div className="login"> <NavLink to="/login">Log In</NavLink></div>}
+        <i class="fas fa-search"></i>
+        {/* <i class="far fa-user" onClick={setDropDownShown(true)}> */}
+         <DropDown hidden={dropDownShown} user={user}/> 
+        {/* </i>  */}
+
     </nav>
   )
 }
