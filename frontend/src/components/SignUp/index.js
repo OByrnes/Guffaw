@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { createUserThunk } from "../../store/session"
 import "./index.css"
+import logourl from "../../images/guffawLogo1.png"
 
 
 const SignUp = () => {
@@ -21,6 +22,7 @@ const SignUp = () => {
   }
   useEffect(()=> {
     const errorArray = []
+    console.log(comedian)
     if (firstName.length < 3) errorArray.push("Please enter your first name.")
     if (lastName.length < 3) errorArray.push("Please enter your last name.")
     if (email.length < 3) errorArray.push("please enter your email")
@@ -28,45 +30,54 @@ const SignUp = () => {
     if (confirmPassword !== password) errorArray.push('re-enter your password')
     setErrors(errorArray)
   
-  },[firstName, lastName, email, password])
+  },[firstName, lastName, email, password, comedian])
 
 
   return (
     <div className="form-container">
+      <h1>Create an account</h1>
+      <img className="logo" src={logourl} height='80px' width='80px'></img>
       <ul>
         {errors.length && errors.map(error => (<li key={error}>{error}</li>))}
       </ul>
 
       <form onSubmit={handleSubmit}>
-        <input placeholder="First Name" type="text" value={firstName} onChange={(e)=> setFirstName(e.target.value)}/>
-        <input placeholder="Last Name" type="text" value={lastName} onChange={(e)=> setLastName(e.target.value)}/>
-        <input placeholder="Email" type="email" value={email} onChange={(e)=> setEmail(e.target.value)}/>
-        <input placeholder="Password" type="password" value={password} onChange={(e)=> setPassword(e.target.value)}/>
-        <input placeholder="Confirm your password" type="Password" value={confirmPassword} onChange={(e)=> setConfirmedPassword(e.target.value)}/>
+        <input className="input-text" placeholder="First Name" type="text" value={firstName} onChange={(e)=> setFirstName(e.target.value)}/>
+        <input className="input-text" placeholder="Last Name" type="text" value={lastName} onChange={(e)=> setLastName(e.target.value)}/>
+        <input className="input-text" placeholder="Email" type="email" value={email} onChange={(e)=> setEmail(e.target.value)}/>
+        <input className="input-text" placeholder="Password" type="password" value={password} onChange={(e)=> setPassword(e.target.value)}/>
+        <input className="input-text" placeholder="Confirm your password" type="Password" value={confirmPassword} onChange={(e)=> setConfirmedPassword(e.target.value)}/>
         <div className="radio-holder">
-        <label>
+        <label className="radio RadioLabelCom">
+          <span className="RadioLabelCom">Comedian</span>
           <input
-            type="radio"
-            value={true}
-            name="Comedian"
-            checked={comedian}
-            onChange={(e)=>{setComedian(e.target.value)}}
+          className="inputRadio"
+          type="radio"
+          value={true}
+          name="Comedian"
+          checked={eval(comedian)}
+          onChange={(e)=>{setComedian(e.target.value)}}
           />
-          Comedian
-        </label>
-        <label>
+          </label>
+          
+        <label className="radioLabelFan">
+         
+        
+          <span className="radioLabelFan">Fan</span>
           <input
+            className="inputRadio"
             type="radio"
             value={false}
             name="Comedian"
-            checked={!comedian}
+            checked={!eval(comedian)}
             onChange={(e)=>{setComedian(e.target.value)}}
-          />
-          Fan
-        </label>
+            />
+            </label>
+            
+       
 
         </div>
-        <button type="submit" disabled={errors.length > 0}>Sign Up</button>
+        <button type="submit" className="btn submit-btn" disabled={errors.length > 0}>Sign Up</button>
         
       </form>
     </div>

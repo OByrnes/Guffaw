@@ -1,9 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Truculenta:wght@100;600&display=swap');
-form input{
-  width: 200px;
-  padding: 10px;
-  margin: 20px;
+.form-container{
+  width: 450px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color:#2d3142ff;
+  font-family: "open sans", sans-serif;
+  color:rgba( 229, 229, 229, 1);
 }
+.form-container h1{
+  font-family: "Truculeta";
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin: 0 auto;
+
+}
+img{
+  margin: 0 auto;
+}
+.form-container ul{
+  margin: 0 auto;
+}
+.form-container li{
+  list-style: none;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 20px;
+  margin: 0 auto;
+}
+
 form{
   display: flex;
   flex-direction: column;
@@ -11,23 +39,50 @@ form{
   margin: auto;
   font-family: "Open sans";
 }
-.form-container{
-  width: fit-content;
-  margin: 30px;
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  justify-content: space-between;
-  padding: 20px;
-  background-color: rgba(20, 33, 61, .8);
-  font-family: "open sans", sans-serif;
-  color:rgba( 229, 229, 229, 1);
+
+form .input-text{
+  width: 346px;
+  height: 46px;
+  padding: 18px 12px 6px;
+  margin: 20px;
+  border-radius: 2px;
 }
-.form-container form{
-  display: flex;
-  flex-direction: column;
-  align-content: space-around;
+
+form .submit-btn{
+  background-color: rgba(252, 163, 17, .8);
+  border: none;
+  margin: 0 auto;
+  padding: 0 30px 1px;
+  width: 130px;
 }
+ .inputRadio{
+   width: 10px;
+ }
+
 .radio-holder{
-  display: flex;
+  margin: 0 auto;
+  display: block;
+  padding-bottom: 20px;
 }
+/* .radioLabelFan{
+  grid-column: 1;
+  grid-row: 1;
+  line-height: 1em;
+}
+.RadioLabelCom{
+  grid-column: 1;
+  grid-row: 2;
+  line-height: 1em;
+
+}
+.inputCom{
+  grid-column: 2;
+  grid-row: 2;
+  line-height: 1em;
+}
+.inputFan{
+  grid-column: 2;
+  grid-row: 1;
+  line-height: 1em;
+} */
+

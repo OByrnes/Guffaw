@@ -2,17 +2,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Truculenta:wght@100;600&display=swap');
 .login_container{
   width: fit-content;
+  height: 400px;
   margin: 30px;
   display: flex;
   flex-direction: column;
   align-content: center;
   justify-content: space-between;
   padding: 20px;
-  background-color: rgba(20, 33, 61, .8);
+  background-color:#2d3142ff;
   font-family: "open sans", sans-serif;
   color:rgba( 229, 229, 229, 1);
 }
+img{
+  margin: 0 auto;
+}
 .login_container li{
+  list-style: none;
   text-decoration: none;
   font-weight: bold;
   padding: 10px;
@@ -27,15 +32,15 @@ form{
 
 form input{
   width: 200px;
-  padding: 10px;
+  padding: 18px 12px 6px;
   margin: 20px;
+  border-radius: 2px;
 }
 
 form .submit-btn{
   background-color: rgba(252, 163, 17, .8);
   border: none;
   margin: auto;
-  padding: 10px;
-  padding-bottom: 20px;
+  padding: 0 30px 1px;
   width: 130px;
 }

@@ -4,16 +4,17 @@ import './index.css';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
+import Modal from 'react-modal'
 
 import App from './App';
-import LoginFormPage from './components/LoginFormPage/index'
+
 import configureStore from './store';
-import SignUp from './components/SignUp'
-import Navigation from "./components/Navigation"
+
 import { restoreCSRF, csrfFetch} from "./store/csrf"
 import { loginUser } from "./store/session"
 import * as sessionActions from './store/session';
 import {Route, Switch} from 'react-router-dom'
+import ModalProvider from './context/ModalContext';
 const store = configureStore();
 
 
@@ -34,24 +35,16 @@ function Root() {
         setDropDownShown(false)
       }
     })
-    // return document.removeEventListener('click', ()=>{})
+     return document.removeEventListener('click', ()=>{})
   },[dropDownShown])
+
   return (
     <Provider store={ store }>
-      <BrowserRouter>
-      <Navigation dropDownShown={dropDownShown} setDropDown={setDropDownShown}/>
-        <Switch>
-          <Route exact path="/">
-            <App />
-          </Route>
-          <Route path="/login">
-            <div className="form-main-page">
-              <LoginFormPage />
-              <SignUp />
-            </div>
-          </Route>
-        </Switch>
-      </BrowserRouter>
+      <ModalProvider>
+        <BrowserRouter>
+          <App dropDownShown={dropDownShown}/>
+        </BrowserRouter>
+      </ModalProvider>
     </Provider>
   )
 }
