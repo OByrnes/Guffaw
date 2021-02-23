@@ -1,11 +1,18 @@
 const express = require('express')
 const router = express.Router();
 const { check } = require('express-validator');
+const { User } = require("../../db/models")
+const {
+  singleMulterUpload,
+  singlePublicFileUpload,
+  multipleMulterUpload,
+  multiplePublicFileUpload,
+} = require("../../awsS3");
 const { handleValidationErrors } = require('../../utils/validation');
 const asyncHandler = require('express-async-handler')
 
 const {setTokenCookie, requireAuth} = require('../../utils/auth')
-const {User} = require('../../db/models');
+
 const validateSignup =[
   check('email')
     .exists({checkFalsy: true})
@@ -30,8 +37,8 @@ const validateSignup =[
 
 ]
 router.post('/',validateSignup, asyncHandler(asyncHandler( async (req, res) => {
-  const {email, password, firstName, lastName, comedian} = req.body;
-  const user = await User.signup({email, firstName, lastName, password, comedian });
+  const {email, password, firstName, lastName, comedian, location} = req.body;
+  const user = await User.signup({email, firstName, lastName, password, comedian, location });
   await setTokenCookie(res, user)
 
   return res.json({
@@ -39,6 +46,18 @@ router.post('/',validateSignup, asyncHandler(asyncHandler( async (req, res) => {
   })
 })))
 
+router.post('/:id/photo', singleMulterUpload("image"), asyncHandler( async (req, res) => {
+  // console.log("request is =====================================",req)
+  const profileImageUrl = await singlePublicFileUpload(req.file)
+  const user = await User.findByPk(req.body.user.id)
+  // console.log("user before update",user)
+  await user.updateAttributes({userPhoto: profileImageUrl})
+  // console.log(user)
+}))
+
+// router.get("/:id", asyncHandler(async (req, res) => {
+  
+// }))
 
 
 module.exports = router;

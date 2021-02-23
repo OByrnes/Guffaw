@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import {useDispatch, useSelector} from "react-redux"
-import { Redirect } from "react-router-dom"
+import { Redirect, useHistory } from "react-router-dom"
 import { loginUser } from "../../store/session"
 import {useModalContext} from "../../context/ModalContext"
 import logourl from "../../images/guffawLogo1.png"
@@ -22,10 +22,13 @@ const LoginFormPage = () => {
     if(errorArray.length ===0 ) setErrors([])
     if (errorArray.length >0 ) setErrors(errorArray)
   }, [email, password])
+  const history = useHistory()
   const handleSubmit =(e)=> {
     e.preventDefault()
     dispatch(loginUser({credential: email, password}))
     closeModal()
+    const redirect =()=> history.replace('/')
+    redirect()
   }
   const {user} = useSelector((state)=> state.session)
   const LogInAsDemo = () => {

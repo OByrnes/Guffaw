@@ -9,6 +9,7 @@ const DropDown = ({user}) => {
   const dispatch = useDispatch()
   const handleSignOut = ()=> {
     dispatch(logOutUser(user))
+    
   }
   return (
     <ul className="drop-down">

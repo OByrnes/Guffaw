@@ -14,13 +14,13 @@ Modal.setAppElement('#modalElement');
 
 
 function App({dropDownShown}) {
-  const {modalIsOpen, openModal, closeModal, customStyles} = useModalContext()
   const dispatch = useDispatch()
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(()=> {
     dispatch(sessionActions.restoreUserThunk()).then(()=> setIsLoaded(true))
   }, [dispatch])
   
+  const {modalIsOpen, openModal, closeModal, customStyles} = useModalContext()
   const {user} = useSelector((state)=> state.session)
   return isLoaded && (
     <>

@@ -10,6 +10,7 @@ module.exports = {
         firstName: "Genny",
         lastName: "McGuill",
         comedian: false,
+        location: "Dayton, Ohio",
         hashedPassword: bcrypt.hashSync('password'),
       },
       {
@@ -17,6 +18,7 @@ module.exports = {
         firstName: "Alphonse",
         lastName: "Geraldine",
         comedian: false,
+        location: "Dayton, Ohio",
         hashedPassword: bcrypt.hashSync(faker.internet.password()),
       },
       {
@@ -24,6 +26,7 @@ module.exports = {
         firstName: "Demo",
         lastName: "User",
         comedian: false,
+        location: "Dayton, Ohio",
         hashedPassword: bcrypt.hashSync(faker.internet.password()),
       },
     ], {});
@@ -32,7 +35,6 @@ module.exports = {
   down: (queryInterface, Sequelize) => {
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete('Users', {
-      username: { [Op.in]: ['Demo-lition', 'FakeUser1', 'FakeUser2'] }
     }, {});
   }
 };

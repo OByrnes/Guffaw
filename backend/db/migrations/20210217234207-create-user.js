@@ -32,6 +32,16 @@ module.exports = {
       upVote: {
         type: Sequelize.INTEGER
       },
+      location: {
+        type: Sequelize.STRING(255)
+      },
+      userPhoto:{
+        type: Sequelize.STRING,
+        allowNull: true
+      },
+      description:{
+        type: Sequelize.TEXT
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

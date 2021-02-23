@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Truculenta:wght@100;600&display=swap');
+.outer-form-container{
+  margin-top: 50px;
+}
 .form-container{
   width: 450px;
   margin: 0 auto;
@@ -38,6 +41,7 @@ form{
   align-content: space-around;
   margin: auto;
   font-family: "Open sans";
+  color:rgba( 229, 229, 229, 1);
 }
 
 form .input-text{
@@ -46,6 +50,10 @@ form .input-text{
   padding: 18px 12px 6px;
   margin: 20px;
   border-radius: 2px;
+}
+form input{
+  background-color:rgba( 229, 229, 229, 1);
+  
 }
 
 form .submit-btn{
@@ -64,25 +72,4 @@ form .submit-btn{
   display: block;
   padding-bottom: 20px;
 }
-/* .radioLabelFan{
-  grid-column: 1;
-  grid-row: 1;
-  line-height: 1em;
-}
-.RadioLabelCom{
-  grid-column: 1;
-  grid-row: 2;
-  line-height: 1em;
-
-}
-.inputCom{
-  grid-column: 2;
-  grid-row: 2;
-  line-height: 1em;
-}
-.inputFan{
-  grid-column: 2;
-  grid-row: 1;
-  line-height: 1em;
-} */
 

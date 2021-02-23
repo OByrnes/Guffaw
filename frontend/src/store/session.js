@@ -3,7 +3,7 @@ const LOG_USER_IN = "session/LOG_IN_USER"
 const LOG_USER_OUT = "session/LOG_OUT_USER"
 const RESTOR_USER = "session/RESTORE_USER"
 const CREATE_USER = "session/CREATE_USER"
-
+const PROFILE_PHOTO = "session/UPDATE_PHOTO"
 const logUserIn = (user) => ({
   type: LOG_USER_IN,
   user
@@ -54,8 +54,35 @@ export const createUserThunk = (user) => async dispatch => {
   })
   if (response.ok) {
     const newUser = await response.json()
-    dispatch(createUser(newUser))
+    dispatch(createUser(newUser.user))
   }
+}
+export const addUserPhoto= (user) => async dispatch => {
+  const { image, firstName, lastName, email, comedian, location, description } = user;
+  const formData = new FormData();
+  formData.append("firstName", firstName);
+  formData.append("lastName", lastName)
+  formData.append('comedian', comedian)
+  formData.append('location', location)
+  formData.append('description', description)
+  formData.append("email", email);
+
+  if (image) formData.append("image", image);
+
+  const res = await csrfFetch(`/api/users/${user.id}/photo`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+    body: formData,
+  });
+  
+  const data = await res.json();
+  dispatch(logUserIn(data.user));
+};
+
+export const addUserDescription= (user) =>{
+
 }
 
 export const restoreUserThunk = () => async dispatch => {

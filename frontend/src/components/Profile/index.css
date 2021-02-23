@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Truculenta:wght@100;600&display=swap');
 .splash-Landing__container{
   margin: 0 auto;
   position: relative;
@@ -10,6 +12,7 @@
 .outer-splash{
   padding: 50px;
   background-color: rgba(207, 219, 213, .5);
+  height: 100%;
 }
 
 .splash-Landing__container li{
@@ -46,4 +49,92 @@
 .splash-Landing__container a:hover{
   background-color:rgba(207, 219, 213, .5);
   cursor: pointer;
+}
+.user-holder{
+  display: flex;
+  flex-direction: column;
+}
+.user-info{
+  color: #2d3142ff;
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+  border: 5px solid rgb(68, 73, 95);
+  padding: 10px;
+  font-family: "open sans";
+}
+.upcoming-shows__container{
+  font-family: "open sans";
+  width: 100%;
+}
+.upcoming-shows__header{
+  font-family: "open sans";
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+}
+.upcoming-shows__header h1{
+  padding: 10px;
+  color: #2d3142ff;
+  border-bottom:2px solid rgba(68, 73, 95, .7);
+}
+#add-event-div{
+  width: fit-content;
+  height: fit-content;
+  border-radius: 50px;
+  background-color: rgba(68, 73, 95, .7);
+  margin: 10px;
+  cursor: pointer;
+}
+#add-event-div .fa-plus{
+  font-size: 30px;
+  padding: 20px;
+  color: #f8961eff;
+}
+@media (max-width: 850px){
+  .splash-Landing__container{
+    margin: 0 auto;
+    position: relative;
+    background: url("../../images/guffawSplash01.png");
+    background-size: 600px 350px;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 300px;
+  }
+  .outer-splash{
+    padding: 50px;
+    background-color: rgba(207, 219, 213, .5);
+  }
+  
+  .splash-Landing__container li{
+    font-family: "open sans";
+    font-size: 10px;
+    color: rgb(207, 219, 213);
+    z-index: 0;
+    list-style: none;
+    padding: 10px;
+  }
+  
+  .splash-Landing__container ul{
+    width: 600px;
+    position: absolute;
+    bottom: 5px;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .splash-Landing__container a{
+    position: absolute;
+    padding: 20px;
+    left: 300px;
+    top: 25px;
+    font-weight: bold;
+    color: rgb(207, 219, 213);
+    font-family: "open sans";
+    font-size: 20px;
+    text-decoration: none;
+    z-index: 0;
+  }
+
 }

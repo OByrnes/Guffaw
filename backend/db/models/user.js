@@ -41,7 +41,17 @@ module.exports = (sequelize, DataTypes) => {
     },
     upVote: {
       type: DataTypes.INTEGER
-    }
+    },
+    location:{
+      type: DataTypes.STRING(255)
+    },
+    userPhoto:{
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    description:{
+      type: DataTypes.TEXT
+    },
   }, {
     defaultScope: {
       attributes: {
@@ -62,8 +72,8 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   User.prototype.toSafeObject = function() { // remember, this cannot be an arrow function
-    const { id, firstName, lastName, email, comedian } = this; // context will be the User instance
-    return { id, firstName, lastName, email, comedian };
+    const { id, firstName, lastName, email, comedian, location, description, userId } = this; // context will be the User instance
+    return { id, firstName, lastName, email, comedian, location };
   };
   User.prototype.validatePassword = function (password) {
     return bcrypt.compareSync(password, this.hashedPassword.toString());
@@ -85,7 +95,7 @@ module.exports = (sequelize, DataTypes) => {
       return await User.scope('currentUser').findByPk(user.id);
     }
   };
-  User.signup = async function ({ firstName, lastName, email, password, comedian }) {
+  User.signup = async function ({ firstName, lastName, email, password, comedian, location }) {
     const hashedPassword = bcrypt.hashSync(password);
     const user = await User.create({
       firstName,
@@ -93,9 +103,11 @@ module.exports = (sequelize, DataTypes) => {
       email,
       comedian,
       hashedPassword,
+      location
     });
     return await User.scope('currentUser').findByPk(user.id);
   };
-
+  
   return User;
 };
+
