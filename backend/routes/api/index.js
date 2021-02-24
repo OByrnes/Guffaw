@@ -7,10 +7,19 @@ const { User } = require('../../db/models');
 
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
+const comedianRouter = require("./comedian.js")
+const eventsRouter = require("./events.js")
+const venueRouter = require("./venue.js")
 
 router.use('/session', sessionRouter);
 
 router.use('/users', usersRouter);
+
+router.use("/comedian", comedianRouter)
+
+router.use("/events", eventsRouter)
+
+router.use("/venues", venueRouter)
 
 
 // router.get(

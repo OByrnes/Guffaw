@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router();
 const { check } = require('express-validator');
-const { User } = require("../../db/models")
+const { User, Tag, Event, comedianToTag, ComedianToEvent, FanToEvent, } = require("../../db/models")
 const {
   singleMulterUpload,
   singlePublicFileUpload,
@@ -47,16 +47,19 @@ router.post('/',validateSignup, asyncHandler(asyncHandler( async (req, res) => {
 })))
 
 router.post('/:id/photo', singleMulterUpload("image"), asyncHandler( async (req, res) => {
-  // console.log("request is =====================================",req)
   const profileImageUrl = await singlePublicFileUpload(req.file)
-  const user = await User.findByPk(req.body.user.id)
-  // console.log("user before update",user)
-  await user.updateAttributes({userPhoto: profileImageUrl})
-  // console.log(user)
+  const user = await User.findByPk(req.body.id)
+  await user.update({userPhoto: profileImageUrl})
+  
+}))
+
+router.post("/:id/description", asyncHandler(async (req, res) => {
+  const user = await User.findByPk(req.body.id)
+  await user.update({description: req.body.description})
 }))
 
 // router.get("/:id", asyncHandler(async (req, res) => {
-  
+//   const tags = 
 // }))
 
 

@@ -63,6 +63,12 @@
   padding: 10px;
   font-family: "open sans";
 }
+.profile-image{
+  width: 500px;
+}
+.profile-pic{
+  margin: 20px;
+}
 .upcoming-shows__container{
   font-family: "open sans";
   width: 100%;

@@ -9,6 +9,7 @@ import {useSelector, useDispatch} from 'react-redux'
 import { Redirect } from "react-router-dom"
 import LoginFormPage from "./components/LoginFormPage";
 import {useModalContext} from "./context/ModalContext"
+import AddAnEvent from './components/AddAnEvent';
 Modal.setAppElement('#modalElement');
 
 
@@ -39,6 +40,9 @@ function App({dropDownShown}) {
         </Route>
         <Route path="/signup">
             <SignUp /> 
+        </Route>
+        <Route path="/addevent">
+          <AddAnEvent />
         </Route>
       </Switch>
     </>

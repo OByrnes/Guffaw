@@ -3,7 +3,7 @@ const LOG_USER_IN = "session/LOG_IN_USER"
 const LOG_USER_OUT = "session/LOG_OUT_USER"
 const RESTOR_USER = "session/RESTORE_USER"
 const CREATE_USER = "session/CREATE_USER"
-const PROFILE_PHOTO = "session/UPDATE_PHOTO"
+
 const logUserIn = (user) => ({
   type: LOG_USER_IN,
   user
@@ -58,8 +58,9 @@ export const createUserThunk = (user) => async dispatch => {
   }
 }
 export const addUserPhoto= (user) => async dispatch => {
-  const { image, firstName, lastName, email, comedian, location, description } = user;
+  const {id, userPhoto, firstName, lastName, email, comedian, location, description } = user;
   const formData = new FormData();
+  formData.append('id', id)
   formData.append("firstName", firstName);
   formData.append("lastName", lastName)
   formData.append('comedian', comedian)
@@ -67,7 +68,7 @@ export const addUserPhoto= (user) => async dispatch => {
   formData.append('description', description)
   formData.append("email", email);
 
-  if (image) formData.append("image", image);
+  if (userPhoto) formData.append("image", userPhoto);
 
   const res = await csrfFetch(`/api/users/${user.id}/photo`, {
     method: "POST",
@@ -81,7 +82,16 @@ export const addUserPhoto= (user) => async dispatch => {
   dispatch(logUserIn(data.user));
 };
 
-export const addUserDescription= (user) =>{
+export const addUserDescription= (user) => async dispatch => {
+  const response = await csrfFetch(`/api/users/${user.id}/description`, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(user)
+  })
+  if (response.ok) {
+    const userWithDescription= await response.json();
+    dispatch(logUserIn(userWithDescription))
+  }
 
 }
 

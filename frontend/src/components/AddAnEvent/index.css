@@ -1,0 +1,26 @@
+.add-event__container{
+  margin: 20px;
+  padding: 20px;
+  
+  background-color: rgba( 229, 229, 229, 1);
+}
+.add-event__container form{
+  display: flex;
+  flex-direction: column;
+}
+
+.add-event__container input{
+  background-color: transparent;
+  border-bottom: 3px solid #00798c;
+  
+}
+.add-event__element{
+  color: #2d3142ff;
+  background-color: white;
+  font-size: 25px;
+  border: 4px solid #003d5b;
+  margin: 10px;
+  align-items: center;
+  display:flex;
+  flex-direction: column;
+}

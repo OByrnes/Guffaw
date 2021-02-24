@@ -68,12 +68,15 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
   User.associate = function(models) {
-    // associations can be defined here
+    User.belongsToMany(models.Tag, {through: "ComedianToTag", foreignKey: "comedianId", otherKey: "tagId"})
+    User.belongsToMany(models.Event, {through: "FanToEvent", foreignKey: "fanId", otherKey: "eventId"})
+    User.belongsToMany(models.Tag, {through: "ComedianToEvent", foreignKey: "comedianId", otherKey: "eventId"})
+    User.hasMany(models.ComedianToTag, {foreignKey: "comedianId"})
   };
 
   User.prototype.toSafeObject = function() { // remember, this cannot be an arrow function
-    const { id, firstName, lastName, email, comedian, location, description, userId } = this; // context will be the User instance
-    return { id, firstName, lastName, email, comedian, location };
+    const { id, firstName, lastName, email, comedian, location, description, userPhoto } = this; // context will be the User instance
+    return { id, firstName, lastName, email, comedian, location, description, userPhoto };
   };
   User.prototype.validatePassword = function (password) {
     return bcrypt.compareSync(password, this.hashedPassword.toString());
