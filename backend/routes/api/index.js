@@ -10,16 +10,22 @@ const usersRouter = require('./users.js');
 const comedianRouter = require("./comedian.js")
 const eventsRouter = require("./events.js")
 const venueRouter = require("./venue.js")
+const tagsRouter = require("./tags.js")
+const fansRouter = require("./fans.js")
 
 router.use('/session', sessionRouter);
 
 router.use('/users', usersRouter);
 
-router.use("/comedian", comedianRouter)
+router.use("/comedians", comedianRouter)
 
 router.use("/events", eventsRouter)
 
 router.use("/venues", venueRouter)
+
+router.use("/tags", tagsRouter)
+
+router.use("/fans", fansRouter)
 
 
 // router.get(

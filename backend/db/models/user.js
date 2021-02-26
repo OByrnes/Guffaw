@@ -69,9 +69,10 @@ module.exports = (sequelize, DataTypes) => {
   });
   User.associate = function(models) {
     User.belongsToMany(models.Tag, {through: "ComedianToTag", foreignKey: "comedianId", otherKey: "tagId"})
-    User.belongsToMany(models.Event, {through: "FanToEvent", foreignKey: "fanId", otherKey: "eventId"})
-    User.belongsToMany(models.Tag, {through: "ComedianToEvent", foreignKey: "comedianId", otherKey: "eventId"})
+    User.belongsToMany(models.Event, {through: "fanToEvent", foreignKey: "fanId", otherKey: "eventId"})
+    User.belongsToMany(models.Event, {through: "comedianToEvent", foreignKey: "comedianId", otherKey: "eventId"})
     User.hasMany(models.ComedianToTag, {foreignKey: "comedianId"})
+    User.hasMany(models.comedianToEvent, {foreignKey: "comedianId"})
   };
 
   User.prototype.toSafeObject = function() { // remember, this cannot be an arrow function

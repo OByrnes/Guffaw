@@ -1,0 +1,23 @@
+.individual-events__container{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.add_event_icon_holder{
+  position: absolute;
+  right: 10px;
+  top: 200px;
+}
+.heart_container{
+  background-color: #d1495b;
+  border-radius: 35px;
+  padding: 5px;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  margin: 10px;
+}
+
+.add_event_icon_holder i{
+  font-size: 35px;
+}

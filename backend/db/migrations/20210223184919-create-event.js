@@ -32,6 +32,13 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {model:{tableName: "Users"}}
       },
+      ticketed:{
+        type: Sequelize.BOOLEAN,
+        allowNull: false
+      },
+      price:{
+        type: Sequelize.FLOAT
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

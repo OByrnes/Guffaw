@@ -2,9 +2,12 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 
 import session from "./session"
-import comedian from "./comedianState"
+import comedians from "./comedianState"
 import events from "./eventState"
 import venues from "./venueState"
+import tags from "./tagState"
+import fans from "./fanState"
+import comedianevents from "./comedianEventState"
 
 let enhancer;
 
@@ -19,9 +22,12 @@ if (process.env.NODE_ENV === 'production') {
 
 const rootReducer = combineReducers({
   session,
-  comedian,
+  comedians,
   events,
-  venues
+  venues,
+  tags,
+  fans,
+  comedianevents
 })
 
 const configureStore = (preloadedState) => {

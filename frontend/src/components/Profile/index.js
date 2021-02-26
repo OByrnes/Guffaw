@@ -7,11 +7,15 @@ import "./index.css"
 import IndividualEvent from "../IndividualEvent"
 import {addUserPhoto, addUserDescription} from "../../store/session"
 import {getComedianStats} from "../../store/comedianState"
+import { getFanAllEvents } from '../../store/fanState'
+
 const Profile = () => {
 
   const [image, setImage] = useState(null);
   const {user} = useSelector((state)=> state.session)
-  const {comedian} = useSelector((state)=> state.comedian)
+  const {comedian} = useSelector((state)=> state.comedians)
+   const {events} = useSelector((state) => state.events)
+  const {fans} = useSelector((state) => state)
   const updateFile = (e) => {
     const file = e.target.files[0];
     if (file) setImage(file);
@@ -23,8 +27,10 @@ const Profile = () => {
   
   useEffect(()=>{
     if(comedian !==undefined && user.comedian){
-      let comedianStats = dispatch(getComedianStats(user.id))
-
+      dispatch(getComedianStats(user.id))
+    }
+    if(user){
+      dispatch(getFanAllEvents(user.id))
     }
     
   },[dispatch])
@@ -59,7 +65,7 @@ if (!user) return (
 
   </div>
 )
-
+// if(events === undefined || comedian === undefined) return null
 return (
   <div className="user-holder">
     <div className="user-info">
@@ -68,12 +74,10 @@ return (
         </label><button type="submit" className="btn submit-btn">Add Photo</button> </form> </div>) : <div className="profile-pic"> <img className="profile-image" src={user.userPhoto}></img></div> }
       <div className="user-info-text">
         <h1>{`${user.firstName} ${user.lastName}`}</h1>
-        {(user.description)? <p>{user.description}</p>:<div> <h3>Add a brief description of your comedy style</h3></div>}
-        <button type="button" className="edit btn" onClick={()=>setEditDescription(true)}>Edit</button>
+        {(user.description)? <p>{user.description}</p>:<div> <h3>About you</h3></div>}
+        <button type="button" className="edit btn" onClick={()=>setEditDescription(true)}>Add Some Details</button>
         {(editDescription)? <form onSubmit={handleEditDescription}><textarea value={newDescription} onChange={(e)=>setNewDescription(e.target.value) }></textarea><button>Submit Edits</button></form>: null}
-        {(comedian !== undefined)?<div><h3>Tags</h3><ul className="tags-list">
-          {comedian.tags.map(tag => (<li key={tag}>{tag}</li>))}
-        </ul></div>: null}
+      
       </div>
       </div>
       <div className="upcoming-Shows__container">
@@ -82,12 +86,12 @@ return (
           <NavLink to="/addevent">
             <div id="add-event-div">
               <i className="fas fa-plus"></i>
-
             </div>
-
           </NavLink>
         </div>
-        <IndividualEvent />
+        {(fans.events)?fans.events.map(ele => (<NavLink key={ele.Event.id} to={`/events/${ele.Event.id}`}><IndividualEvent event={ele.Event} /></NavLink>)): null}
+
+        {/* <IndividualEvent /> */}
 
     </div>
 

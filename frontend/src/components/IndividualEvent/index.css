@@ -1,0 +1,18 @@
+.event__container {
+  width: 300px;
+  
+}
+.eventPhoto{
+  max-width: 300px;
+  height: 300px;
+}
+.photoHolder{
+  height: 300px;
+  overflow: hidden;
+}
+.event__container{
+  width: 300px;
+  margin: 20px;
+  border: 4px solid #003d5b;
+  position: relative;
+}

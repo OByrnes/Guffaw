@@ -33,6 +33,10 @@ import {csrfFetch} from "./csrf"
 
 const CREATE_EVENT = "event/CREATE_EVENT"
 const GET_ALL_EVENTS = "event/GET_ALL_EVENTS"
+const GET_ONE_EVENT = "event/GET_ONE_EVENT"
+
+
+
 
 const addEvent = (event) => ({
   type: CREATE_EVENT,
@@ -43,9 +47,14 @@ const getAllEvents = (events) => ({
   type: GET_ALL_EVENTS,
   events
 })
+const getOneEvent = (event) => ({
+  type: GET_ONE_EVENT,
+  event
+})
+
 
 export const addNewEvent = (event) => async dispatch => {
-  const {venueId, date, name, eventPhoto, description, recurring, host} = event;
+  const {venueId, date, name, eventPhoto, description, recurring, host,ticketed, price, types} = event;
   const formData = new FormData()
   formData.append("venueId", venueId)
   formData.append("date", date)
@@ -53,8 +62,11 @@ export const addNewEvent = (event) => async dispatch => {
   formData.append("description", description)
   formData.append("recurring", recurring)
   formData.append("host", host)
+  formData.append("types", types)
+  formData.append("ticketed", ticketed)
+  formData.append('price',price)
+  
   if (eventPhoto) formData.append("image", eventPhoto);
-
   const res = await csrfFetch(`/api/events`, {
     method: "POST",
     headers: {
@@ -64,7 +76,7 @@ export const addNewEvent = (event) => async dispatch => {
   });
   
   const data = await res.json();
-  dispatch(addEvent(data.event));
+  dispatch(addEvent(data));
 };
 
 export const getAllTheEvents = () => async dispatch => {
@@ -74,6 +86,15 @@ export const getAllTheEvents = () => async dispatch => {
     dispatch(getAllEvents(events))
   }
 }
+export const getTheOneEvent = (id) => async dispatch => {
+  const res = await csrfFetch(`/api/events/${id}`)
+  if (res.ok) {
+    const event = await res.json()
+    dispatch(getOneEvent(event))
+  }
+}
+
+
 
 const eventReducer =  (state= {}, action) => {
   
@@ -88,6 +109,13 @@ const eventReducer =  (state= {}, action) => {
       newState.events = action.events
       return newState
     }
+    case GET_ONE_EVENT: {
+      const newState = {...state}
+      newState.events = action.event
+      return newState
+    }
+   
+
     default: {
       return state
     }

@@ -19,7 +19,8 @@ const validateNewVenue =[
 ]
 router.get('/', asyncHandler(async (req, res) => {
   const venues = await Venue.findAll()
-  res.json({venues})
+  
+  res.json(venues)
 }))
 
 router.get("/:id", asyncHandler(async (req, res) => {

@@ -1,0 +1,35 @@
+.event-holder{
+  display: flex;
+  flex-direction: column;
+}
+.event-info__container{
+  color: #2d3142ff;
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+  border: 5px solid rgb(68, 73, 95);
+  padding: 10px;
+  font-family: "open sans";
+}
+.event-Photo__holder{
+  width: 500px;
+}
+.event-Photo__holder img{
+  width: 300px;
+}
+.comics-lineup__container{
+  font-family: "open sans";
+  width: 100%;
+}
+.comics-lineup__header{
+  font-family: "open sans";
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+}
+.comics-lineup__header h1{
+  padding: 10px;
+  color: #2d3142ff;
+  border-bottom:2px solid rgba(68, 73, 95, .7);
+}

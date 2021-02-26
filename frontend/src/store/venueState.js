@@ -45,7 +45,7 @@ const venueReducer = (state = {}, action) => {
     }
     case GET_ALL_VENUES: {
       const newState = {...state}
-      newState.venues = action.venue
+      newState.venues = action.venues
       return newState
     }
    

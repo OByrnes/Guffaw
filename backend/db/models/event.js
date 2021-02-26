@@ -5,14 +5,22 @@ module.exports = (sequelize, DataTypes) => {
     date: DataTypes.DATE,
     name: DataTypes.STRING,
     description: DataTypes.TEXT,
-    recurring: DataTypes.BOOLEAN
+    recurring: DataTypes.BOOLEAN,
+    host: DataTypes.INTEGER,
+    eventPhoto: DataTypes.STRING,
+    ticketed: DataTypes.BOOLEAN,
+    price: DataTypes.FLOAT
   }, {});
   Event.associate = function(models) {
-
-    Event.belongsToMany(models.User, {through: "FanToEvent", foreignKey: "eventId", otherKey: "userId"})
-    Event.belongsToMany(models.User, {through: "ComediansToEvent", foreignKey: "eventId", otherKey: "userId"})
+    Event.belongsTo(models.Venue, {foreignKey: "venueId"})
+    Event.belongsToMany(models.User, {through: "fanToEvent", foreignKey: "eventId", otherKey: "userId"})
+    Event.belongsToMany(models.User, {through: "comedianToEvent", foreignKey: "eventId", otherKey: "comedianId"})
     Event.belongsToMany(models.Type, {through: "eventToType", foreignKey: "eventId", otherKey: "typeId"})
-    Event.belongsToMany(models.Tag, {through: "EventToTag", foreignKey: "eventId", otherKey: "TagId"})
+    Event.belongsToMany(models.Tag, {through: "eventToTag", foreignKey: "eventId", otherKey: "tagId"})
+    Event.hasMany(models.eventToType, {foreignKey:"eventId"})
+    Event.hasMany(models.eventToTag, {foreignKey:"eventId"})
+    Event.hasMany(models.comedianToEvent, {foreignKey: "eventId"})
+    
   };
   return Event;
 };

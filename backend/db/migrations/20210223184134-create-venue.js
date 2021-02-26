@@ -20,6 +20,10 @@ module.exports = {
         type: Sequelize.ENUM("bar","brewery","comedyClub","restaurant","other","coffeeShop"),
         allowNull: false
       },
+      websiteUrl: {
+        type: Sequelize.STRING,
+
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

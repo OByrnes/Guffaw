@@ -10,6 +10,10 @@ import { Redirect } from "react-router-dom"
 import LoginFormPage from "./components/LoginFormPage";
 import {useModalContext} from "./context/ModalContext"
 import AddAnEvent from './components/AddAnEvent';
+import Events from "./components/Events"
+import SingleEventPage from "./components/SingleEventPage"
+import Comedian from "./components/Comedian";
+import Comedians from "./components/Comedians"
 Modal.setAppElement('#modalElement');
 
 
@@ -23,6 +27,7 @@ function App({dropDownShown}) {
   
   const {modalIsOpen, openModal, closeModal, customStyles} = useModalContext()
   const {user} = useSelector((state)=> state.session)
+  const {comedians} = useSelector((state)=> state.comedians)
   return isLoaded && (
     <>
       <Navigation dropDownShown={dropDownShown}/>
@@ -43,6 +48,18 @@ function App({dropDownShown}) {
         </Route>
         <Route path="/addevent">
           <AddAnEvent />
+        </Route>
+        <Route path="/events/:id">
+          <SingleEventPage />
+        </Route>
+        <Route path="/events">
+          <Events />
+        </Route>
+        <Route path="/comedians/:comedianId">
+          <Comedian />
+        </Route>
+        <Route path="/comedians">
+          <Comedians />
         </Route>
       </Switch>
     </>

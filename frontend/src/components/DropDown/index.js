@@ -16,8 +16,10 @@ const DropDown = ({user}) => {
       <li>
         {(user) ? <button onClick={handleSignOut} className="btn signOut">Sign Out</button> : <div className="Login_holder"> <button onClick={openModal}>Log In</button></div>} 
       </li>
-       {(user) ? <li>{`${user.firstName} ${user.lastName}`}</li> : <li className="Login_holder"> <NavLink className="Loginbtn" to="/signup">Create an account</NavLink> </li>}
-       {(user) ? <li>{`${user.email}`}</li> : null}
+       {(user) ? <NavLink to="/"><li>{`${user.firstName} ${user.lastName}`}</li> </NavLink>: <li className="Login_holder"> <NavLink className="Loginbtn" to="/signup">Create an account</NavLink> </li>}
+       <li><NavLink to="/addevent">Add an Event</NavLink></li>
+       <li><NavLink to="/events" >Events</NavLink></li>
+       <li><NavLink to="/comedians">Comedians</NavLink></li>
 
     </ul>
   )

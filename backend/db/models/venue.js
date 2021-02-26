@@ -1,11 +1,19 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Venue = sequelize.define('Venue', {
-    location: DataTypes.STRING,
-    type: DataTypes.STRING
+    name: {
+      type: DataTypes.STRING
+    },
+    location: {
+      type: DataTypes.STRING
+    },
+    type: {type: DataTypes.STRING},
+    websiteUrl: {
+      type: DataTypes.STRING
+    }
   }, {});
   Venue.associate = function(models) {
-    // associations can be defined here
+    Venue.hasMany(models.Event, {foreignKey: "venueId"})
   };
   return Venue;
 };

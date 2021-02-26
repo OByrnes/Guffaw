@@ -5,7 +5,8 @@ module.exports = (sequelize, DataTypes) => {
     typeId: DataTypes.INTEGER
   }, {});
   eventToType.associate = function(models) {
-    // associations can be defined here
+    eventToType.belongsTo(models.Event, {foreignKey: "eventId"})
+    eventToType.belongsTo(models.Type, {foreignKey: "typeId"})
   };
   return eventToType;
 };
