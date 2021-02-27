@@ -38,7 +38,7 @@ function Root() {
         setSearchDropDownShown(false)
       }
     })
-    //  return document.removeEventListener('click', ()=>{})
+   return document.removeEventListener('click', ()=>{})
   },[dropDownShown,searchDropDownShown])
   
   return (

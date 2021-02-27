@@ -6,7 +6,7 @@ const searchResults = (searchresults) => ({
   searchresults
 })
 export const searchComedian = (firstName, lastName, location) => async dispatch => {
-  const res = await csrfFetch(`/api/search`,{
+  const res = await csrfFetch(`/api/search/`,{
     method: "PATCH",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({firstName, lastName, location})

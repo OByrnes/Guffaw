@@ -74,7 +74,13 @@
   width: 200px;
   margin: 10px;
 }
-
+.all-the-comedians-page__container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 10px;
+  justify-content: space-around;
+}
 
 .tags__container form{
   display: flex;
@@ -102,4 +108,11 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+}
+.all_the_comics{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 30px;
+  justify-content: space-around;
 }

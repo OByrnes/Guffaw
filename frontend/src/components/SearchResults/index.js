@@ -6,13 +6,13 @@ import IndividualEvent from "../IndividualEvent"
 const SearchResults = () => {
   const {searchresults} = useSelector((state) => state.search)
   console.log(searchresults)
-  if (searchresults === undefined)return null
-  if (!searchresults[0].firstname === undefined)
-  return (
+  if (searchresults === undefined)return (null)
+  if (searchresults[0]=== undefined) return (<h1>No Results were found!</h1>)
+  if (searchresults[0].firstName !== undefined) return (
     <div className="search-result-container">
       <h1>Search Results</h1>
       <div className="search-results">
-        {(searchresults)?searchresults.map(result => <ComedianThumbnail key={result.id} comic={result}/>):null}
+        {(searchresults)?searchresults.map(result =><NavLink to={`/comedians/${result.id}`}> <ComedianThumbnail key={result.id} comic={result}/></NavLink>):null}
       </div>
 
     </div>

@@ -23,6 +23,7 @@ router.patch("/", asyncHandler (async (req, res) => {
       ]
     }
   })
+  
   res.json(searchResults)
 }))
 
@@ -41,6 +42,7 @@ router.patch("/42", asyncHandler (async (req, res) => {
   searchResults.forEach(venue => {
     eventResults= [...venue.Events, ...eventResults]
   });
+  
   res.json(eventResults)
 }))
 

@@ -98,10 +98,10 @@ const SingleEventPage = () => {
             <button type="button" id={events.id} onClick={handleAddComics}><h2>Add Comics to Show</h2></button>
           </div>
           ):null}
-          <div className="all_the_comics" hidden={!showComics}>
-          {(comedian!==undefined)?comedian.map(comic => (<div className="addToShow__comic_holder" onClick={()=>addComicToShow(comic.id)}><ComedianThumbnail comic={comic} /></div>)): null}
+         {(showComics)?<div className="all_the_comics" hidden={!showComics}>
+          {(comedian!==undefined)?comedian.map(comic => (<div className="addToShow__comic_holder" onClick={()=>addComicToShow(comic.id)}><ComedianThumbnail comic={comic} /></div>)): null}</div>: null } 
 
-        </div>
+        
         <div className="comics-lineup__container">
           <div className="header">
           <h1>Comics on the Lineup</h1>
