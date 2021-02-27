@@ -101,8 +101,8 @@ export const restoreUserThunk = () => async dispatch => {
   dispatch(logUserIn(data.user))
   return response
 }
-const initialState ={user:null}
-const sessionReducer =  (state= initialState, action) => {
+// const initialState ={user:null}
+const sessionReducer =  (state= {}, action) => {
   
   switch (action.type) {
     case LOG_USER_IN: {

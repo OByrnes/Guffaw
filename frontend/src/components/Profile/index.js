@@ -65,22 +65,21 @@ if (!user) return (
 
   </div>
 )
-// if(events === undefined || comedian === undefined) return null
 return (
   <div className="user-holder">
     <div className="user-info">
       {(!user.userPhoto)? (<div><h3>Add a Profile Picture</h3> <form onSubmit={handleAddPhoto}><label>
           <input type="file" onChange={updateFile} />
-        </label><button type="submit" className="btn submit-btn">Add Photo</button> </form> </div>) : <div className="profile-pic"> <img className="profile-image" src={user.userPhoto}></img></div> }
+        </label><button type="submit" id="picButton" className="btn submit-btn">Add Photo</button> </form> </div>) : <div className="profile-pic"> <img className="profile-image" src={user.userPhoto}></img></div> }
       <div className="user-info-text">
         <h1>{`${user.firstName} ${user.lastName}`}</h1>
         {(user.description)? <p>{user.description}</p>:<div> <h3>About you</h3></div>}
-        <button type="button" className="edit btn" onClick={()=>setEditDescription(true)}>Add Some Details</button>
+        <button type="button"  className="edit btn" onClick={()=>setEditDescription(true)}>Add Some Details</button>
         {(editDescription)? <form onSubmit={handleEditDescription}><textarea value={newDescription} onChange={(e)=>setNewDescription(e.target.value) }></textarea><button>Submit Edits</button></form>: null}
       
       </div>
       </div>
-      <div className="upcoming-Shows__container">
+      <div className="upcoming-Shows__container_profile">
         <div className="upcoming-shows__header">
           <h1>{`Your upcoming events`}</h1>
           <NavLink to="/addevent">
@@ -89,7 +88,10 @@ return (
             </div>
           </NavLink>
         </div>
-        {(fans.events)?fans.events.map(ele => (<NavLink key={ele.Event.id} to={`/events/${ele.Event.id}`}><IndividualEvent event={ele.Event} /></NavLink>)): null}
+        <div className="fanEvent__container">
+          {(fans.events)?fans.events.map(ele => (<NavLink  to={`/events/${ele.Event.id}`}><IndividualEvent key={ele.Event.id} event={ele.Event} /></NavLink>)): null}
+
+        </div>
 
         {/* <IndividualEvent /> */}
 

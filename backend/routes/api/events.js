@@ -56,5 +56,16 @@ router.put("/:id", asyncHandler (async (req, res) => {
   res.json(updatedEvent)
 }))
 
+router.post("/addvenue", singleMulterUpload("image"), asyncHandler (async (req, res) => {
+  const eventImageUrl = await singlePublicFileUpload(req.file)
+  let {name, venueName, venueLocation, venueWebsiteUrl, venueType, date, recurring, description, host, price, ticketed, types} = req.body
+
+  const newVenue = await Venue.create({name:venueName, location: venueLocation, websiteUrl:venueWebsiteUrl, type: venueType})
+  
+  const newEvent = await Event.create({name, venueId:newVenue.id, eventPhoto: eventImageUrl, date, recurring, description, host, ticketed, price})
+  types.split(',').forEach( async type => await eventToType.create({eventId: newEvent.id, typeId: Number(type)}))
+  
+  res.json(newEvent)
+}))
 
 module.exports = router;

@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router();
+
 const asyncHandler = require('express-async-handler')
 
 const { User, Tag, Event, ComedianToTag, comedianToEvent } = require("../../db/models")
@@ -18,6 +19,13 @@ router.get("/", asyncHandler (async (req, res) => {
     include: [Event, Tag]})
 
   res.json(comedians)
+}))
+
+router.patch("/:id", asyncHandler (async (req, res) => {
+  const {upVote} = req.body
+  const comedian = await User.findByPk(req.params.id)
+  await comedian.update({upVote: upVote})
+  res.json(comedian)
 }))
 
 

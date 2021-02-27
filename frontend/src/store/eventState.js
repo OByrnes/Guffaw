@@ -52,6 +52,37 @@ const getOneEvent = (event) => ({
   event
 })
 
+export const addNewVenueAndEvent = (event, venue) => async dispatch => {
+  const { date, name, eventPhoto, description, recurring, host,ticketed, price, types} = event;
+  const {newVenueWebsiteUrl, newVenue, newVenueAddress, newVenueType} = venue;
+  const formData = new FormData()
+  formData.append("date", date)
+  formData.append("name", name)
+  formData.append("description", description)
+  formData.append("recurring", recurring)
+  formData.append("host", host)
+  formData.append("types", types)
+  formData.append("ticketed", ticketed)
+  formData.append('price',price)
+  formData.append("venueName", newVenue)
+  formData.append("venueLocation", newVenueAddress)
+  formData.append("venueWebsiteUrl", newVenueWebsiteUrl)
+  formData.append("venueType", newVenueType)
+
+  
+  if (eventPhoto) formData.append("image", eventPhoto);
+  const res = await csrfFetch(`/api/events/addvenue`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+    body: formData,
+  });
+  
+  const data = await res.json();
+  dispatch(addEvent(data));
+
+}
 
 export const addNewEvent = (event) => async dispatch => {
   const {venueId, date, name, eventPhoto, description, recurring, host,ticketed, price, types} = event;

@@ -23,6 +23,7 @@ const Events = () => {
   }
 return (
   <div className="events-page__container">
+    <h1>Events</h1>
     <div className="individual-events__container">
       {(events)?events.map(event => (<div className="eventContainer"><div className="add_event_icon_holder">
       <div className="heart_container" onClick={()=>handleLikeEvent(event.id, user.id)}>

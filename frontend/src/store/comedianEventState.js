@@ -19,6 +19,14 @@ export const comediansOnShow = (eventId) => async dispatch => {
   }
 }
 
+export const topComedians = () => async dispatch => {
+  const res = await csrfFetch('/api/top')
+  if (res.ok) {
+    const topComedians = await res.json()
+    dispatch(allComediansOnShow(topComedians))
+  }
+}
+
 export const addToShow = (comicId, eventId) => async dispatch => {
   const res = await csrfFetch(`/api/events/${eventId}`, {
     method: "PUT",
@@ -43,7 +51,7 @@ const comedianEventReducer =  (state= {}, action) => {
     }
     case ADD_TO_SHOW: {
       const newState = {...state}
-      newState.comedianEvents = [...state.Comedianevents,action.events]
+      newState.comedianEvents = action.events
       return newState
     }
     

@@ -3,14 +3,11 @@ const router = express.Router();
 const asyncHandler = require('express-async-handler')
 
 const { User, Tag, Event, ComedianToTag, comedianToEvent } = require("../../db/models");
-const { get } = require('./comedian');
-
-
-router.get("/:id", asyncHandler( async (req, res) => {
-  const comediansOnEvent = await comedianToEvent.findAll({where: { eventId: req.params.id}, include: [User]})
-  res.json(comediansOnEvent)
+router.get('/', asyncHandler(async (req, res) => {
+  const topComedians = await User.findAll({
+    order: ["upVote"],
+    limit: 1
+  })
 }))
-
-
 
 module.exports = router

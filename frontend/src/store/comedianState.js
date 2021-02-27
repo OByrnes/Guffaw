@@ -29,6 +29,18 @@ export const getAllTheComics = () => async dispatch => {
     dispatch(comedianInfo(info))
   }
 }
+
+export const addUpVote = (upVote, comedianId) => async dispatch => {
+  const response = await csrfFetch(`/api/comedians/${comedianId}`, {
+    method: "PATCH",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({upVote: upVote})
+  })
+  if (response.ok) {
+    const info = await response.json()
+    dispatch(comedianInfo(info))
+  }
+}
 const comedianReducer =  (state= {}, action) => {
   
   switch (action.type) {

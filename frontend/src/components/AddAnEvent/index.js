@@ -1,14 +1,20 @@
 import {useSelector} from 'react-redux'
 import {useEffect, useState} from "react"
-import {NavLink} from "react-router-dom"
+import {NavLink, useHistory} from "react-router-dom"
 import { useDispatch } from "react-redux"
 
-import {getAllTheVenues, addNewVenue} from "../../store/venueState"
-import {addNewEvent} from "../../store/eventState"
+import {getAllTheVenues} from "../../store/venueState"
+import {addNewEvent, addNewVenueAndEvent} from "../../store/eventState"
 import "./index.css"
 const AddAnEvent = () => {
+  const venueTypes =["bar","brewery","comedyClub","restaurant","other","coffeeShop"]
   const dispatch = useDispatch();
   const [venueId, setVenueId] = useState(0)
+  const [ShowInputForVenue, setShowInputForVenue] = useState(false)
+  const [newVenue, setNewVenue] = useState('')
+  const [newVenueAddress, setNewVenueAddress] = useState('')
+  const [newVenueWebsiteUrl, setNewVenueWebsiteUrl] = useState('')
+  const [newVenueType, setNewVenueType] = useState(venueTypes[0])
   const [types, setTypes] = useState([])
   const [date, setDate] = useState('')
   const [name, setName] = useState('')
@@ -18,7 +24,11 @@ const AddAnEvent = () => {
   const [price, SetPrice] = useState(0)
   const [ticketed, SetTicketed] = useState(false)
   const eventTypes = ["Open-mic", "Free", "Stand-Up", "Improv", "Family-Friendly", "18+", "21+"]
-  
+  useEffect(()=>{
+    if(Number(venueId) === 10000000000000000000000000000000000000){
+      setShowInputForVenue(true)
+    }
+  },[venueId])
   useEffect(()=>{
     dispatch(getAllTheVenues())
   },[dispatch])
@@ -29,13 +39,22 @@ const AddAnEvent = () => {
     if (file) setEventPhoto(file);
     
   };
+  const history = useHistory()
   const handleSubmit = (e) =>{
     e.preventDefault()
-    const newEvent= {name, date, eventPhoto, description, recurring, host: user.id, venueId, price,ticketed, types}
-    
-    dispatch(addNewEvent(newEvent))
+    if(Number(venueId) !== 10000000000000000000000000000000000000){
+      const newEvent= {name, date, eventPhoto, description, recurring, host: user.id, venueId, price,ticketed, types}
+      
+      dispatch(addNewEvent(newEvent))
 
+    }else{
+      const addedVenue = {newVenueWebsiteUrl, newVenue, newVenueAddress, newVenueType}
+      const newEvent = {name, date, eventPhoto, description, recurring, host: user.id, venueId, price,ticketed, types}
+      dispatch(addNewVenueAndEvent(newEvent, addedVenue))
+    }
+    history.replace("/events")
   }
+  
   const handleTypes = (e) => {
     let array =[]
     let newtypes= document.getElementsByClassName("eventTypeCheck")
@@ -62,23 +81,39 @@ const AddAnEvent = () => {
           <label name="Venue">
             Location
           </label>
-          <select onChange={(e)=>setVenueId(e.target.value)}>
-            <option></option>
+          
+          <select  onChange={(e)=>setVenueId(e.target.value)}>
             {venues? venues.map((venue) => (<option value={venue.id} key={venue.id}>{venue.name}</option>)):null}
-          </select>
+            <option value={10000000000000000000000000000000000000}>Add a new venue</option>
+          </select >
 
+          
+            <div className="new_venue__container" hidden={!ShowInputForVenue}>
+              <label>
+                <input type="text" placeholder="venue name" value={newVenue} onChange={(e)=>setNewVenue(e.target.value)}/>
+              </label>
+              <label>
+                <input type="text" placeholder="venue address" value={newVenueAddress} onChange={(e)=>setNewVenueAddress(e.target.value)}/>
+              </label>
+              <label>
+                <input type="text" placeholder="venue website url" value={newVenueWebsiteUrl} onChange={(e)=>setNewVenueWebsiteUrl(e.target.value)}/>
+              </label>
+              <select onChange={(e)=>setNewVenueType}>
+                {venueTypes.map(type => (<option key={type}>{type}</option>))}
+              </select>
+            </div>
         </div>
         <div className="add-event__element">
           <label>
             Date and Start Time
           </label>
           <input value={date} type="datetime-local" onChange={(e)=> setDate(e.target.value)} value={date} />
-          <div className="add-event__element">
+          
           <label>
             Is this a recurring Event?
             <input onClick={(e)=>setRecurring(e.target.checked)}  type="checkbox" />
           </label>
-          </div>
+          
           <label>
             Is this a ticketed Event?
             <input onClick={(e)=>SetTicketed(e.target.checked)}  type="checkbox" />
@@ -104,7 +139,7 @@ const AddAnEvent = () => {
           <label>
             Event Description
           </label>
-            <textarea value={description} onChange={(e)=>setDescription(e.target.value)}/>
+            <textarea rows="4" cols="50" value={description} onChange={(e)=>setDescription(e.target.value)}/>
 
         </div>
         <div className="add-event__element types_events">
@@ -113,7 +148,7 @@ const AddAnEvent = () => {
           </fieldset>
           
         </div>
-        <button type="submit">Add a new event</button>
+        <button className="submit-btn" type="submit">Add a new event</button>
 
       </form>
     </div>

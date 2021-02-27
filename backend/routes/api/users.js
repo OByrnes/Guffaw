@@ -41,9 +41,9 @@ router.post('/',validateSignup, asyncHandler(asyncHandler( async (req, res) => {
   const user = await User.signup({email, firstName, lastName, password, comedian, location });
   await setTokenCookie(res, user)
 
-  return res.json({
+  return res.json(
     user
-  })
+  )
 })))
 
 router.post('/:id/photo', singleMulterUpload("image"), asyncHandler( async (req, res) => {

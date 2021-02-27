@@ -1,14 +1,30 @@
+
+
+.events-page__container{
+  align-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
 .individual-events__container{
-  display:flex;
+  display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  border-top: 2px solid #d1495b;
 }
 .add_event_icon_holder{
   position: absolute;
-  right: 10px;
+  z-index: 3;
+  right: 20px;
   top: 200px;
+  cursor: pointer;
 }
 .heart_container{
+  position: absolute;
+  z-index: 3;
+  right: 20px;
+  top: 200px;
+  cursor: pointer;
   background-color: #d1495b;
   border-radius: 35px;
   padding: 5px;
@@ -20,4 +36,7 @@
 
 .add_event_icon_holder i{
   font-size: 35px;
+}
+.eventContainer{
+  position: relative;
 }

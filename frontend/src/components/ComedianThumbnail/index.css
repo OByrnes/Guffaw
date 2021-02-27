@@ -1,13 +1,15 @@
 .comedian__container{
   width: 300px;
   margin: 20px;
-  border: 4px solid #003d5b;
+  /* border: 4px solid #003d5b; */
   position: relative;
-
+  background-color: rgb(251, 252, 253);
 }
 .comedian_photo_holder img{
   width: 300px;
-  position: relative;
+  height: 300px;
+  overflow: hidden;
+  
 }
 .comedian_photo_holder{
   width: 300px;
@@ -15,6 +17,20 @@
   overflow: hidden;
 
 }
+.comedian-description__container{
+  box-sizing: border-box;
+  padding: 10px;
+  width: 300px;
+  /* margin: 10px; */
+  font-family: "open sans";
+  text-decoration: none;
+  color: #003d5b;
+  padding: 10px;
+  border-left: 4px solid #003d5b;
+  border-right: 4px solid #003d5b;
+  border-bottom: 4px solid #003d5b;
+}
+
 #add-comic{
   background-color: #d1495b;
   border-radius: 35px;

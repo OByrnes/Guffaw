@@ -1,0 +1,12 @@
+.individual-comedians__container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border-top: 2px solid #d1495b;
+}
+.all-the-comedians-page__container{
+  align-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}

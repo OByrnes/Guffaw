@@ -6,7 +6,6 @@ const { User, Tag, Event, comedianToTag, eventToTag, eventToType, comedianToEven
 const asyncHandler = require('express-async-handler');
 
 router.get("/:id", asyncHandler (async (req, res) => {
-  console.log("this is the id????????????????????????????????",req.params.id)
   const fanEvents = await fanToEvent.findAll({where:{fanId:req.params.id}, include: [Event]})
   res.json(fanEvents)
 }))

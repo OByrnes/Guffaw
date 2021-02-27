@@ -1,35 +1,105 @@
 .event-holder{
+  font-family: "open sans";
+  color: #003d5b;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
 }
-.event-info__container{
-  color: #2d3142ff;
+.event-Photo__holder img{
+  width: 500px;
+
+}
+.all_the_comics{
   display: flex;
   flex-direction: row;
-  margin: 20px;
-  border: 5px solid rgb(68, 73, 95);
+  flex-wrap: wrap;
+}
+.event-info__container{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  /* background-color: antiquewhite; */
   padding: 10px;
-  font-family: "open sans";
+  margin-top: 20px;
+  border-bottom: 1px solid #d1495b;
+}
+.event-info-text{
+  flex-grow: 2;
+  margin-left: 30px;
+  border-left: 1px solid #d1495b;
+  padding-left: 30px;
 }
 .event-Photo__holder{
   width: 500px;
+  height: 500px;
+  overflow: hidden;
 }
-.event-Photo__holder img{
-  width: 300px;
-}
+
 .comics-lineup__container{
   font-family: "open sans";
   width: 100%;
 }
-.comics-lineup__header{
+.header{
   font-family: "open sans";
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-content: center;
+  align-items: center;
 }
-.comics-lineup__header h1{
+.header h1{
   padding: 10px;
-  color: #2d3142ff;
+  color: #edae49;
   border-bottom:2px solid rgba(68, 73, 95, .7);
+}
+.addToShow__comic_holder{
+  position: relative;
+}
+.tags__container{
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.tags__container select, option, .tags__container input{
+  border: none;
+  background-color: #00798c;
+  color: #003d5b;
+  font-family: "open sans";
+  font-size: 17px;
+  height: 50px;
+  width: 200px;
+  margin: 10px;
+}
+
+
+.tags__container form{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  height: 50px;
+}
+.tags-list{
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+
+}
+.header{
+  display:flex;
+  flex-direction: row;
+  justify-items: center;
+  align-items: center;
+}
+.header h1{
+  margin: auto 0;
+}
+.line-up-comics{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }

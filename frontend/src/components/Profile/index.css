@@ -1,34 +1,40 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Truculenta:wght@100;600&display=swap');
 .splash-Landing__container{
-  margin: 0 auto;
+  margin-top: 30px;
   position: relative;
-  background: url("../../images/guffawSplash01.png");
-  background-size: 1200px 400px;
+  background-image: url("../../images/guffawSplash01.png");
   background-repeat: no-repeat;
-  width: 100%;
-  height: 500px;
+  background-size: auto;
+  width: 1200px;
+  height:400px;
+  box-shadow:#2d3142ff 0px 0px 1px 2px;
 }
+
 .outer-splash{
-  padding: 50px;
-  background-color: rgba(207, 219, 213, .5);
-  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  
+  max-height: 100%;
 }
 
 .splash-Landing__container li{
   font-family: "open sans";
   font-size: 20px;
   color: rgb(207, 219, 213);
+  text-shadow:  #2d3142ff 1px 3px 3px;
   z-index: 0;
   list-style: none;
   padding: 30px;
 }
 
 .splash-Landing__container ul{
-  width: 1000px;
+  width: 1200px;
   position: absolute;
   bottom: 0px;
-  bottom: 65px;
+  bottom: -43px;
   display: flex;
   flex-direction: row;
 }
@@ -40,6 +46,7 @@
   top: 50px;
   font-weight: bold;
   color: rgb(207, 219, 213);
+  text-shadow:  #2d3142ff 1px 3px 3px;
   font-family: "open sans";
   font-size: 20px;
   text-decoration: none;
@@ -69,7 +76,14 @@
 .profile-pic{
   margin: 20px;
 }
-.upcoming-shows__container{
+#picButton {
+  text-align: center;
+  padding: 10px;
+  height: 30px;
+
+}
+.upcoming-shows__container_profile{
+  
   font-family: "open sans";
   width: 100%;
 }
@@ -84,6 +98,11 @@
   padding: 10px;
   color: #2d3142ff;
   border-bottom:2px solid rgba(68, 73, 95, .7);
+}
+.fanEvent__container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 #add-event-div{
   width: fit-content;

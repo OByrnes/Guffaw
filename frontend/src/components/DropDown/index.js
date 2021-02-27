@@ -1,15 +1,15 @@
 import {useDispatch, useSelector} from "react-redux"
-import {NavLink} from "react-router-dom";
+import {NavLink, useHistory} from "react-router-dom";
 import {logOutUser} from "../../store/session"
 
 import { useModalContext } from '../../context/ModalContext'
 const DropDown = ({user}) => {
-  console.log(user)
   const {openModal} = useModalContext()
   const dispatch = useDispatch()
+  const history = useHistory()
   const handleSignOut = ()=> {
     dispatch(logOutUser(user))
-    
+    history.replace('/')
   }
   return (
     <ul className="drop-down">

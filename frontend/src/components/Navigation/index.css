@@ -63,3 +63,21 @@ nav{
   font-size: 25px;
   font-family: "open sans", sans-serif;
 }
+
+.searchForm{
+  
+  top: 100px;
+  right: 1px;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8961eff;
+  z-index: 3;
+}
+.searchContainer{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 100px;
+  right: 1px;
+  
+}

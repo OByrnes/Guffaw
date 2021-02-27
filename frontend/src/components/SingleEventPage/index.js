@@ -18,6 +18,7 @@ const SingleEventPage = () => {
   const [newTag, setNewTag] = useState('')
   const [allNewTag, setAllNewTag] = useState('')
   const [showInput, setShowInput] = useState(false)
+  
   const {id} = useParams()
   const dispatch = useDispatch()
   useEffect(()=>{
@@ -84,28 +85,31 @@ const SingleEventPage = () => {
             <option value={100000}>Other</option>
           </select>
           <input hidden={!showInput} type="text" value={allNewTag} placeholder="new tag"  onChange={(e)=>setAllNewTag(e.target.value)}/>
-          <button type="submit">Add Tag</button>
+          <button className="submit-btn" type="submit">Add Tag</button>
           </form>
         </div> 
         </div>
         </div>
       </div>
         <Venue venue={events.Venue}/>
+          {(user!== undefined && events.host === user.id)? (
         <div className="add_comics_to_show" id="addToShow">
-          {(events.host === user.id)? (
             
             <button type="button" id={events.id} onClick={handleAddComics}><h2>Add Comics to Show</h2></button>
+          </div>
           ):null}
           <div className="all_the_comics" hidden={!showComics}>
-          {(comedian!==undefined)?comedian.map(comic => (<div onClick={()=>addComicToShow(comic.id)}><ComedianThumbnail comic={comic} /></div>)): null}
+          {(comedian!==undefined)?comedian.map(comic => (<div className="addToShow__comic_holder" onClick={()=>addComicToShow(comic.id)}><ComedianThumbnail comic={comic} /></div>)): null}
 
-          </div>
         </div>
         <div className="comics-lineup__container">
+          <div className="header">
           <h1>Comics on the Lineup</h1>
-          {/* This is where I need to get comedian Events */}
+          </div>
+          <div className="all-the-comedians-page__container">
           {(!events.User)? events.Users.map(comedian => (<NavLink to={`/comedians/${comedian.id}`}><ComedianThumbnail comic={comedian} /></NavLink>)):null}
-
+              </div>
+          
         </div>
     </div>
     

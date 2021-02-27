@@ -12,6 +12,8 @@ const eventsRouter = require("./events.js")
 const venueRouter = require("./venue.js")
 const tagsRouter = require("./tags.js")
 const fansRouter = require("./fans.js")
+const searchRouter = require("./search")
+const topRouter = require("./top.js")
 
 router.use('/session', sessionRouter);
 
@@ -26,6 +28,11 @@ router.use("/venues", venueRouter)
 router.use("/tags", tagsRouter)
 
 router.use("/fans", fansRouter)
+
+router.use("/search", searchRouter)
+
+router.use("/top", topRouter)
+
 
 
 // router.get(

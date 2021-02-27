@@ -8,6 +8,7 @@ import venues from "./venueState"
 import tags from "./tagState"
 import fans from "./fanState"
 import comedianevents from "./comedianEventState"
+import search from "./searchStore"
 
 let enhancer;
 
@@ -27,7 +28,8 @@ const rootReducer = combineReducers({
   venues,
   tags,
   fans,
-  comedianevents
+  comedianevents,
+  search
 })
 
 const configureStore = (preloadedState) => {

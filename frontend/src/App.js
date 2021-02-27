@@ -12,6 +12,7 @@ import {useModalContext} from "./context/ModalContext"
 import AddAnEvent from './components/AddAnEvent';
 import Events from "./components/Events"
 import SingleEventPage from "./components/SingleEventPage"
+import SearchResults from "./components/SearchResults"
 import Comedian from "./components/Comedian";
 import Comedians from "./components/Comedians"
 Modal.setAppElement('#modalElement');
@@ -60,6 +61,9 @@ function App({dropDownShown}) {
         </Route>
         <Route path="/comedians">
           <Comedians />
+        </Route>
+        <Route path="/searchresults">
+          <SearchResults />
         </Route>
       </Switch>
     </>

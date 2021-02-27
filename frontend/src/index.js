@@ -28,21 +28,24 @@ if (process.env.NODE_ENV !== 'production') {
 
 function Root() {
   const [ dropDownShown, setDropDownShown] = useState(false)
+  const [searchDropDownShown, setSearchDropDownShown] = useState(false)
   useEffect(()=>{
     document.addEventListener('click', (e)=> {
       if(e.target.id === 'showDD') setDropDownShown(true)
+      
       else{
         setDropDownShown(false)
+        setSearchDropDownShown(false)
       }
     })
-     return document.removeEventListener('click', ()=>{})
-  },[dropDownShown])
-
+    //  return document.removeEventListener('click', ()=>{})
+  },[dropDownShown,searchDropDownShown])
+  
   return (
     <Provider store={ store }>
       <ModalProvider>
         <BrowserRouter>
-          <App dropDownShown={dropDownShown}/>
+          <App dropDownShown={dropDownShown} searchDropDownShown={searchDropDownShown}/>
         </BrowserRouter>
       </ModalProvider>
     </Provider>
