@@ -163,7 +163,7 @@ This Project relies on React and redux for the frontend and express for the back
 
 
 ### Database Schema
-  [https://github.com/OByrnes/Guffaw/guffawDatabaseSchema1](https://github.com/OByrnes/Guffaw/guffawDatabaseSchema1)
+  <img src="/frontend/src/images/guffawDatabaseSchema1.png" alt="Schema" width="600" height="600">
 
 
 
