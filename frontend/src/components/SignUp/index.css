@@ -9,7 +9,7 @@
   flex-direction: column;
   align-content: center;
   justify-content: space-between;
-  padding: 20px;
+  padding: 10px;
   background-color:#2d3142ff;
   font-family: "open sans", sans-serif;
   color:rgba( 229, 229, 229, 1);
@@ -73,3 +73,34 @@ form .submit-btn{
   padding-bottom: 20px;
 }
 
+@media (max-width: 400px){
+  .form-container{
+    width: 280px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color:#2d3142ff;
+    font-family: "open sans", sans-serif;
+    color:rgba( 229, 229, 229, 1);
+  }
+  .form-container h1{
+    font-family: "Truculeta";
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin: 0 auto;
+  
+  }
+  form .input-text{
+    width: 200px;
+    height: 46px;
+    padding: 18px 12px 6px;
+    margin: 20px;
+    border-radius: 2px;
+  }
+  .inputRadio{
+    width: 10px;
+  }
+}

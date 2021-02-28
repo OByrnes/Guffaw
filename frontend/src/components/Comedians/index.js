@@ -20,13 +20,13 @@ const Comedians = () => {
   const {user} = useSelector((state)=> state.session)
   const {comedian} = useSelector((state) => state.comedians)
   let featuredComics = []
-  if (comedian){comedian.forEach(ele => {
+  if (comedian!== undefined && comedian[0] !== undefined){comedian.forEach(ele => {
     if(ele.upVote != null){
       featuredComics.push(ele)
     }
   })
   featuredComics.sort((a, b) => b.upVote-a.upVote)
-  console.log(featuredComics)}
+  }
   featuredComics = featuredComics.splice(0, 6)
 return (
   <div className="all-the-comedians-page__container">
@@ -34,7 +34,7 @@ return (
     <div className="featured">
       <h1>Featured</h1>
       <div className='individual-comedians__container'>
-        {(featuredComics)?featuredComics.map(comedian => <FeaturedThumbnail comic={comedian} />): null}
+        {(featuredComics)?featuredComics.map(comedian => <NavLink to={`/comedians/${comedian.id}`}><FeaturedThumbnail comic={comedian} /></NavLink>): null}
 
       </div>
 

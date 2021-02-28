@@ -74,7 +74,7 @@ const AddAnEvent = () => {
           <label>
             Event Title
           </label>
-            <input value={name} type="text" onChange={(e)=>setName(e.target.value)}/>
+            <input value={name} type="text" onChange={(e)=>setName(e.target.value)} required={true}/>
 
         </div>
         <div className="add-event__element">
@@ -83,6 +83,7 @@ const AddAnEvent = () => {
           </label>
           
           <select  onChange={(e)=>setVenueId(e.target.value)}>
+            <option></option>
             {venues? venues.map((venue) => (<option value={venue.id} key={venue.id}>{venue.name}</option>)):null}
             <option value={10000000000000000000000000000000000000}>Add a new venue</option>
           </select >
@@ -90,15 +91,15 @@ const AddAnEvent = () => {
           
             <div className="new_venue__container" hidden={!ShowInputForVenue}>
               <label>
-                <input type="text" placeholder="venue name" value={newVenue} onChange={(e)=>setNewVenue(e.target.value)}/>
+                <input type="text" placeholder="venue name"required={true} value={newVenue} onChange={(e)=>setNewVenue(e.target.value)}/>
               </label>
               <label>
-                <input type="text" placeholder="venue address" value={newVenueAddress} onChange={(e)=>setNewVenueAddress(e.target.value)}/>
+                <input type="text" placeholder="venue address" value={newVenueAddress} onChange={(e)=>setNewVenueAddress(e.target.value)} required={true}/>
               </label>
               <label>
                 <input type="text" placeholder="venue website url" value={newVenueWebsiteUrl} onChange={(e)=>setNewVenueWebsiteUrl(e.target.value)}/>
               </label>
-              <select onChange={(e)=>setNewVenueType}>
+              <select onChange={(e)=>setNewVenueType} required={true}>
                 {venueTypes.map(type => (<option key={type}>{type}</option>))}
               </select>
             </div>
@@ -116,7 +117,7 @@ const AddAnEvent = () => {
           
           <label>
             Is this a ticketed Event?
-            <input onClick={(e)=>SetTicketed(e.target.checked)}  type="checkbox" />
+            <input onClick={(e)=>SetTicketed(e.target.checked)}  type="checkbox" required={true} />
           </label>
           </div>
           <div className="add-event__element">

@@ -70,3 +70,19 @@ option:hover{
 .types_events fieldset label:hover{
   background-color: #f8961eff;
 }
+@media (max-width: 700px){
+  form{
+    width: 100%;
+  }
+  .add-event__element textarea{
+    width: 200px;
+  }
+  .add-event__element label{
+    font-size: 15px;
+    width: 200px;
+  }
+  .new_venue__container{
+    width: 200px;
+    overflow: hidden;
+  }
+}

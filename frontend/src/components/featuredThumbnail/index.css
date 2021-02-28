@@ -33,3 +33,41 @@
   z-index: 3;
   color: #f8961eff;
 }
+@media (max-width: 850px){
+  .featured-Comic__container{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 300px;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+  }
+  .featured-Comic__container img{
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    top: 0px;
+    z-index: -1;
+  }
+  .featured-Comic__container h1{
+    position:absolute;
+    top: 200px;
+    /* bottom: 0px; */
+    left: 0px;
+    padding: 30px;
+    background-color: rgba(4,4,4 ,.5);
+    font-size: 20px;
+    z-index: 2;
+    width: 100%;
+    color: aliceblue;
+  }
+  .featured-Comic__container p{
+    font-weight: bold;
+    font-size: 20px;
+    position: absolute;
+    bottom: -15px;
+    right: 0px;
+    z-index: 3;
+    color: #f8961eff;
+  }
+}
