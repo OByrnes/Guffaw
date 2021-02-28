@@ -48,12 +48,12 @@ const SignUp = () => {
         </ul>
 
         <form onSubmit={handleSubmit}>
-          <input className="input-text" placeholder="First Name" type="text" value={firstName} onChange={(e)=> setFirstName(e.target.value)}/>
-          <input className="input-text" placeholder="Last Name" type="text" value={lastName} onChange={(e)=> setLastName(e.target.value)}/>
-          <input className="input-text" placeholder="Location ex. Dayton, OH" type="text" value={location} onChange={(e)=> setLocation(e.target.value)}/>
-          <input className="input-text" placeholder="Email" type="email" value={email} onChange={(e)=> setEmail(e.target.value)}/>
-          <input className="input-text" placeholder="Password" type="password" value={password} onChange={(e)=> setPassword(e.target.value)}/>
-          <input className="input-text" placeholder="Confirm your password" type="Password" value={confirmPassword} onChange={(e)=> setConfirmedPassword(e.target.value)}/>
+          <input className="input-text" placeholder="First Name" type="text" value={firstName} onChange={(e)=> setFirstName(e.target.value)} required={true}/>
+          <input className="input-text" placeholder="Last Name" type="text" value={lastName} onChange={(e)=> setLastName(e.target.value)} required={true}/>
+          <input className="input-text" placeholder="Location ex. Dayton, OH" type="text" value={location} onChange={(e)=> setLocation(e.target.value)} />
+          <input className="input-text" placeholder="Email" type="email" value={email} onChange={(e)=> setEmail(e.target.value)} required={true}/>
+          <input className="input-text" placeholder="Password" type="password" value={password} onChange={(e)=> setPassword(e.target.value)} required={true}/>
+          <input className="input-text" placeholder="Confirm your password" type="Password" value={confirmPassword} onChange={(e)=> setConfirmedPassword(e.target.value)} required={true}/>
 
           <div className="radio-holder">
           <label className="radio RadioLabelCom">
@@ -64,6 +64,7 @@ const SignUp = () => {
             value={true}
             name="Comedian"
             checked={eval(comedian)}
+            required={true}
             onChange={(e)=>{setComedian(e.target.value)}}
             />
             </label>
