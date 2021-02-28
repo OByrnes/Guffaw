@@ -91,10 +91,10 @@ const AddAnEvent = () => {
           
             <div className="new_venue__container" hidden={!ShowInputForVenue}>
               <label>
-                <input type="text" placeholder="venue name"required={true} value={newVenue} onChange={(e)=>setNewVenue(e.target.value)}/>
+                <input type="text" placeholder="venue name"required={setShowInputForVenue} value={newVenue} onChange={(e)=>setNewVenue(e.target.value)}/>
               </label>
               <label>
-                <input type="text" placeholder="venue address" value={newVenueAddress} onChange={(e)=>setNewVenueAddress(e.target.value)} required={true}/>
+                <input type="text" placeholder="venue address" value={newVenueAddress} onChange={(e)=>setNewVenueAddress(e.target.value)} required={(setShowInputForVenue)}/>
               </label>
               <label>
                 <input type="text" placeholder="venue website url" value={newVenueWebsiteUrl} onChange={(e)=>setNewVenueWebsiteUrl(e.target.value)}/>
@@ -112,12 +112,21 @@ const AddAnEvent = () => {
           
           <label>
             Is this a recurring Event?
-            <input onClick={(e)=>setRecurring(e.target.checked)}  type="checkbox" />
+            <label>
+              Yes
+              <input onClick={(e)=>setRecurring(e.target.value)}  type="radio" value={true} />
+
+            </label>
+            <label>
+              No
+            <input onClick={(e)=>setRecurring(e.target.value)} type = "radio" value={false} />
+
+            </label>
           </label>
           
           <label>
             Is this a ticketed Event?
-            <input onClick={(e)=>SetTicketed(e.target.checked)}  type="checkbox" required={true} />
+            <input onChange={(e)=>SetTicketed(e.target.checked)}  type="checkbox"  />
           </label>
           </div>
           <div className="add-event__element">
