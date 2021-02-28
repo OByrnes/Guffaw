@@ -106,8 +106,8 @@ const SingleEventPage = () => {
           <div className="header">
           <h1>Comics on the Lineup</h1>
           </div>
-          <div className="all-the-comedians-page__container">
-          {(!events.User)? events.Users.map(comedian => (<NavLink to={`/comedians/${comedian.id}`}><ComedianThumbnail comic={comedian} /></NavLink>)):null}
+          <div className="all-the-comedians-page__container_EventPage">
+          {(!events.User && events !== undefined)? events.Users.map(comedian => (<NavLink to={`/comedians/${comedian.id}`}><ComedianThumbnail comic={comedian} /></NavLink>)):null}
               </div>
           
         </div>

@@ -75,6 +75,9 @@
 }
 .profile-pic{
   margin: 20px;
+  max-height: 400px;
+  max-width: 400px;
+  overflow: hidden;
 }
 #picButton {
   text-align: center;
@@ -83,7 +86,6 @@
 
 }
 .upcoming-shows__container_profile{
-  
   font-family: "open sans";
   width: 100%;
 }
@@ -91,8 +93,9 @@
   font-family: "open sans";
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-content: center;
+  align-items: center;
 }
 .upcoming-shows__header h1{
   padding: 10px;
@@ -103,6 +106,9 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
 }
 #add-event-div{
   width: fit-content;
@@ -111,7 +117,14 @@
   background-color: rgba(68, 73, 95, .7);
   margin: 10px;
   cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  color: #f8961eff;
+  padding: 5px;
 }
+
 #add-event-div .fa-plus{
   font-size: 30px;
   padding: 20px;
@@ -148,7 +161,9 @@
     display: flex;
     flex-direction: row;
   }
-  
+  .edit{
+    background-color: #2d3142ff;
+  }
   .splash-Landing__container a{
     position: absolute;
     padding: 20px;
@@ -161,5 +176,81 @@
     text-decoration: none;
     z-index: 0;
   }
-
+  .user-info{
+    color: #2d3142ff;
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    border: 5px solid rgb(68, 73, 95);
+    padding: 10px;
+    font-family: "open sans";
+  }
+  .upcoming-shows__header{
+    font-family: "open sans";
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+  }
+  #add-event-div{
+    width: 45px;
+    height: 45px;
+    overflow: hidden;
+    border-radius: 50px;
+    background-color: rgba(68, 73, 95, .7);
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    color: #f8961eff;
+  }
+  #add-event-div span{
+    visibility: hidden;
+    display:none;
+  }
+  .fanEvent__container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+  }
+}
+@media (max-width: 650px){
+  .splash-Landing__container{
+    margin: 0 auto;
+    position: relative;
+    background: url("../../images/guffawSplash01.png");
+    background-size: 400px 200px;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 200px;
+  }
+  .outer-splash{
+    padding: 50px;
+    background-color: rgba(207, 219, 213, .5);
+  }
+  
+  .splash-Landing__container li{
+    font-family: "open sans";
+    font-size: 10px;
+    color: rgb(207, 219, 213);
+    z-index: 0;
+    list-style: none;
+    padding: 10px;
+  }
+  
+  .splash-Landing__container ul{
+    width: 300px;
+    position: absolute;
+    bottom: -20px;
+    display: flex;
+    flex-direction: row;
+  }
+  .splash-Landing__container a {
+    font-size: 15px;
+  }
 }

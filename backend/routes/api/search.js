@@ -19,8 +19,12 @@ router.patch("/", asyncHandler (async (req, res) => {
         }},
         {location: {
           [Op.iLike]: location
+        }},
+        {location: {
+          [Op.substring]: location
         }}
-      ]
+      ],
+      comedian: true
     }
   })
   

@@ -23,6 +23,7 @@ const Profile = () => {
   };
   const [editDescription, setEditDescription] = useState(false)
   const [newDescription, setNewDescription] = useState('')
+  const [showToolTip, setShowToolTip] = useState(false)
   const dispatch = useDispatch()
   
   useEffect(()=>{
@@ -83,7 +84,9 @@ return (
         <div className="upcoming-shows__header">
           <h1>{`Your upcoming events`}</h1>
           <NavLink to="/addevent">
-            <div id="add-event-div">
+            
+            <div id="add-event-div" >
+              <span className="tool-tip">Create a New event</span>
               <i className="fas fa-plus"></i>
             </div>
           </NavLink>
@@ -92,8 +95,6 @@ return (
           {(fans.events)?fans.events.map(ele => (<NavLink  to={`/events/${ele.Event.id}`}><IndividualEvent key={ele.Event.id} event={ele.Event} /></NavLink>)): null}
 
         </div>
-
-        {/* <IndividualEvent /> */}
 
     </div>
 

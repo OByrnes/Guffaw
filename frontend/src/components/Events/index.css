@@ -40,3 +40,17 @@
 .eventContainer{
   position: relative;
 }
+
+@media (max-width: 850px){
+  .individual-events__container{
+    flex-direction:column;
+    align-content: center;
+    align-items: center;
+    border-top: 2px solid #d1495b;
+  }
+  .all-the-events-page__container{
+    align-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}

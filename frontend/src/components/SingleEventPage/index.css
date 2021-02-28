@@ -58,6 +58,14 @@
 .addToShow__comic_holder{
   position: relative;
 }
+.add_comics_to_show button{
+  border: none;
+  background-color: #00798c;
+  font-size: 25px;
+  font-weight: bold;
+  padding: 10px;
+  font-family: "open sans";
+}
 .tags__container{
   list-style: none;
   display: flex;
@@ -74,12 +82,21 @@
   width: 200px;
   margin: 10px;
 }
-.all-the-comedians-page__container{
+.tags__container .submit-btn{
+  background-color: #00798c;
+  height: 50px;
+  cursor: pointer;
+}
+.tags__container .submit-btn:hover{
+  background-color: #edae49;
+  cursor: pointer;
+}
+.all-the-comedians-page__container_EventPage{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   margin: 10px;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .tags__container form{
@@ -115,4 +132,21 @@
   flex-wrap: wrap;
   margin: 30px;
   justify-content: space-around;
+}
+.venue__container{
+  margin: 20px;
+  border-bottom: 1px solid #d1495b;
+  padding: 20px;
+}
+@media (max-width: 850px){
+  .tags__container{
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-items: center;
+  }
+  .event-info-text{
+    flex-grow: 2;
+    padding-left: 30px;
+  }
 }
