@@ -7,7 +7,7 @@ import {getAllTheVenues} from "../../store/venueState"
 import {addNewEvent, addNewVenueAndEvent} from "../../store/eventState"
 import "./index.css"
 const AddAnEvent = () => {
-  const venueTypes =["bar","brewery","comedyClub","restaurant","other","coffeeShop"]
+  const venueTypes =["bar","brewery","comedyClub","restaurant","coffeeShop", "other"]
   const dispatch = useDispatch();
   const [venueId, setVenueId] = useState(0)
   const [ShowInputForVenue, setShowInputForVenue] = useState(false)

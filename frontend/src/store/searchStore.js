@@ -1,4 +1,5 @@
 import {csrfFetch} from "./csrf"
+import * as deepcopy from "deepcopy"
 const SEARCH_RESULT = "search/SEARCH_RESULT"
 
 const searchResults = (searchresults) => ({
@@ -32,7 +33,7 @@ const searchReducer =  (state= {}, action) => {
   
   switch (action.type) {
     case SEARCH_RESULT: {
-      const newState = {...state}
+      const newState = deepcopy(state)
       newState.searchresults = action.searchresults
       return newState
     }

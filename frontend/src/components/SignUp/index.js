@@ -17,7 +17,7 @@ const SignUp = () => {
   const [errors, setErrors] = useState([])
   const history = useHistory()
   const dispatch = useDispatch()
-  const redirect =()=> history.replace('/')
+  const redirect =() => history.replace('/')
   const handleSubmit = (e)=> {
     e.preventDefault()
     dispatch(createUserThunk({firstName, lastName, email, password, comedian, location}))
@@ -25,7 +25,7 @@ const SignUp = () => {
     
   }
   useEffect(()=> {
-    const errorArray = []
+    let errorArray = []
     
     if (firstName.length < 3) errorArray.push("Please enter your first name.")
     if (lastName.length < 3) errorArray.push("Please enter your last name.")

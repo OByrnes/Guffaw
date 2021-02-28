@@ -13,8 +13,6 @@ const Profile = () => {
 
   const [image, setImage] = useState(null);
   const {user} = useSelector((state)=> state.session)
-  const {comedian} = useSelector((state)=> state.comedians)
-   const {events} = useSelector((state) => state.events)
   const {fans} = useSelector((state) => state)
   const updateFile = (e) => {
     const file = e.target.files[0];
@@ -25,14 +23,16 @@ const Profile = () => {
   const [newDescription, setNewDescription] = useState('')
   const [showToolTip, setShowToolTip] = useState(false)
   const dispatch = useDispatch()
+  const [isLoaded, setIsLoaded] = useState(false);
   
   useEffect(()=>{
-    if(comedian !==undefined && user.comedian){
+    if(user !==undefined && user.comedian){
       dispatch(getComedianStats(user.id))
     }
     if(user){
       dispatch(getFanAllEvents(user.id))
     }
+    setIsLoaded(true)
     
   },[dispatch])
   
@@ -66,7 +66,7 @@ if (!user) return (
 
   </div>
 )
-return (
+return isLoaded && (
   <div className="user-holder">
     <div className="user-info">
       {(!user.userPhoto)? (<div><h3>Add a Profile Picture</h3> <form onSubmit={handleAddPhoto}><label>

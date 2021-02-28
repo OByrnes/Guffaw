@@ -12,10 +12,14 @@ const Comedian = () => {
   const [showInput, setShowInput] = useState(false)
   const {comedianId} = useParams()
   const dispatch = useDispatch()
+  const {user} = useSelector((state)=> state.session)
+  const {comedian} = useSelector((state) => state.comedians)
+  
+  const {tags} = useSelector((state) => state.tags)
   useEffect(()=>{
     dispatch(getComedianStats(comedianId))
     dispatch(getAllTags())
-  },[dispatch])
+  },[dispatch, comedian])
 
   useEffect(()=>{
     if(Number(newTag)===100000){
@@ -43,10 +47,7 @@ const Comedian = () => {
     
   }
 
-  const {user} = useSelector((state)=> state.session)
-  const {comedian} = useSelector((state) => state.comedians)
   
-  const {tags} = useSelector((state) => state.tags)
   
   if ((comedian === undefined || tags ===undefined )) return null
   

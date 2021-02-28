@@ -21,7 +21,7 @@ const SearchResults = () => {
     <div className="search-result-container">
       <h1>Search Results</h1>
       <div className="search-results">
-        {(searchresults)?searchresults.map(result => <IndividualEvent key={result.id} event={result}/>):null}
+        {(searchresults)?searchresults.map(result =><NavLink to={`/events/${result.id}`} ><IndividualEvent key={result.id} event={result}/></NavLink>):null}
       </div>
     </div>
   )

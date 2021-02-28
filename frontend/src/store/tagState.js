@@ -1,4 +1,5 @@
 import {csrfFetch} from "./csrf"
+import * as deepcopy from "deepcopy"
 
 const GET_ALL_THE_TAGS = "tags/GET_TAGS"
 const ADD_NEW_TAG = "tags/ADD_TAG"
@@ -76,13 +77,13 @@ const tagsReducer = (state={}, action) => {
 
   switch (action.type) {
     case GET_ALL_THE_TAGS: {
-      const newState = {...state}
+      const newState = deepcopy(state)
       newState.tags = action.tags
       return newState
     }
     case ADD_NEW_TAG: {
-      const newState = {...state}
-      newState.tags = [...state.tags, action.tag]
+      const newState = deepcopy(state)
+      newState.tags.push(action.tag)
       return newState
     }
       

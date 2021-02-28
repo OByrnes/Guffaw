@@ -1,4 +1,5 @@
 import {csrfFetch} from "./csrf"
+import * as deepcopy from "deepcopy"
 const FAN_EVENTS = "fans/FAN_EVENTS"
 const FAN_LIKE = "fans/FAN_LIKE"
 const getFanEvents = (events) => ({
@@ -36,12 +37,12 @@ const fanReducer =  (state= {}, action) => {
   switch (action.type) {
     
     case FAN_EVENTS:{
-      const newState = {...state}
+      const newState = deepcopy(state)
       newState.events = action.events
       return newState
     }
     case FAN_LIKE:{
-      const newState = {...state}
+      const newState = deepcopy(state)
       newState.events = action.event
       return newState
     }

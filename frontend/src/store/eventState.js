@@ -1,35 +1,7 @@
 import {csrfFetch} from "./csrf"
+import * as deepcopy from "deepcopy"
 
-// export const addUserPhoto= (user) => async dispatch => {
-//   const {id, userPhoto, firstName, lastName, email, comedian, location, description } = user;
-//   const formData = new FormData();
-//   formData.append('id', id)
-//   formData.append("firstName", firstName);
-//   formData.append("lastName", lastName)
-//   formData.append('comedian', comedian)
-//   formData.append('location', location)
-//   formData.append('description', description)
-//   formData.append("email", email);
 
-//   if (userPhoto) formData.append("image", userPhoto);
-
-//   const res = await csrfFetch(`/api/users/${user.id}/photo`, {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "multipart/form-data",
-//     },
-//     body: formData,
-//   });
-  
-//   const data = await res.json();
-//   dispatch(logUserIn(data.user));
-// };
-// const CREATE_USER = "session/CREATE_USER"
-
-// const logUserIn = (user) => ({
-//   type: LOG_USER_IN,
-//   user
-// })
 
 const CREATE_EVENT = "event/CREATE_EVENT"
 const GET_ALL_EVENTS = "event/GET_ALL_EVENTS"

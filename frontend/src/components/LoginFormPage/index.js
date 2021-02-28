@@ -19,10 +19,14 @@ const LoginFormPage = () => {
     const errorArray = []
     if(email.length< 4) errorArray.push("Please enter your email.")
     if(password.length < 3) errorArray.push('Please enter/ re-enter your password.')
-    if(errorArray.length ===0 ) setErrors([])
-    if (errorArray.length >0 ) setErrors(errorArray)
+    if(errorArray.length === 0 ) setErrors([])
+    if (errorArray.length > 0 ) setErrors(errorArray)
   }, [email, password])
   const history = useHistory()
+  useEffect(()=>{
+    
+  })
+  const {user} = useSelector((state)=> state.session)
   const handleSubmit =(e)=> {
     e.preventDefault()
     dispatch(loginUser({credential: email, password}))
@@ -30,12 +34,11 @@ const LoginFormPage = () => {
     const redirect =()=> history.replace('/')
     redirect()
   }
-  const {user} = useSelector((state)=> state.session)
   const LogInAsDemo = () => {
     dispatch(loginUser({credential: "demo@user.io", password: "password"}))
     closeModal()
   }
-  // if(user !== null) return <Redirect to="/" />
+
   return(
     <div className="login_container">
       <img src={logourl} height="70px" width="70px"></img>

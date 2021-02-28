@@ -1,4 +1,5 @@
 import {csrfFetch} from "./csrf"
+import * as deepcopy from "deepcopy"
 const ADD_TO_SHOW = "comedianEvents/ADD_TO_SHOW"
 const GET_COMEDIAN_EVENTS ="comedianEvents/GET_COMEDIAN_EVENTS"
 
@@ -45,12 +46,12 @@ const comedianEventReducer =  (state= {}, action) => {
   switch (action.type) {
     
     case GET_COMEDIAN_EVENTS: {
-      const newState = {...state}
+      const newState = deepcopy(state)
       newState.comedianEvents = action.comedianEvents
       return newState
     }
     case ADD_TO_SHOW: {
-      const newState = {...state}
+      const newState = deepcopy(state)
       newState.comedianEvents = action.events
       return newState
     }

@@ -1,8 +1,10 @@
 import {csrfFetch} from "./csrf"
+import * as deepcopy from "deepcopy"
 const LOG_USER_IN = "session/LOG_IN_USER"
 const LOG_USER_OUT = "session/LOG_OUT_USER"
 const RESTOR_USER = "session/RESTORE_USER"
 const CREATE_USER = "session/CREATE_USER"
+const SHOW_LOGIN_ERRORS = "session/SHOW_ERRORS"
 
 const logUserIn = (user) => ({
   type: LOG_USER_IN,
@@ -23,6 +25,10 @@ const createUser = (user) => ({
   type: CREATE_USER,
   user
 })
+const showErrors = (errors) => ({
+  type: SHOW_LOGIN_ERRORS,
+  errors
+})
 
 export const loginUser = (user) => async dispatch => {
   const response = await csrfFetch('/api/session', {
@@ -30,10 +36,14 @@ export const loginUser = (user) => async dispatch => {
     
     body: JSON.stringify(user)
   })
-  if (response.ok) {
+  try{
     const loggedInUser= await response.json();
     dispatch(logUserIn(loggedInUser))
   }
+  catch(error){
+    dispatch(showErrors(error))
+  }
+  
 }
 
 export const logOutUser = (user) => async dispatch => {
@@ -80,6 +90,7 @@ export const addUserPhoto= (user) => async dispatch => {
   
   const data = await res.json();
   dispatch(logUserIn(data.user));
+  return res
 };
 
 export const addUserDescription= (user) => async dispatch => {
@@ -91,6 +102,7 @@ export const addUserDescription= (user) => async dispatch => {
   if (response.ok) {
     const userWithDescription= await response.json();
     dispatch(logUserIn(userWithDescription))
+    return response
   }
 
 }
@@ -106,18 +118,23 @@ const sessionReducer =  (state= {}, action) => {
   
   switch (action.type) {
     case LOG_USER_IN: {
-      const newState = {...state}
+      const newState = deepcopy(state)
       newState.user=action.user
       return newState
     }
     case LOG_USER_OUT: {
-      const newState ={...state}
+      const newState = deepcopy(state)
       newState.user = null
       return newState
     }
     case CREATE_USER: {
-      const newState = {...state}
+      const newState = deepcopy(state)
       newState.user = action.user
+      return newState
+    }
+    case SHOW_LOGIN_ERRORS: {
+      const newState = deepcopy(state)
+      newState.user = action.errors
       return newState
     }
     default: {

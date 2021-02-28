@@ -1,4 +1,5 @@
 import {csrfFetch} from "./csrf"
+import * as deepcopy from "deepcopy"
 
 const CREATE_VENUE = "venue/CREATE_VENUE"
 const GET_ALL_VENUES = "venue/GET_ALL_VENUES"
@@ -39,12 +40,12 @@ const venueReducer = (state = {}, action) => {
 
   switch (action.type) {
     case CREATE_VENUE: {
-      const newState = {...state}
+      const newState = deepcopy(state)
       newState.venue = action.venue
       return newState
     }
     case GET_ALL_VENUES: {
-      const newState = {...state}
+      const newState = deepcopy(state)
       newState.venues = action.venues
       return newState
     }
