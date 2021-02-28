@@ -5,7 +5,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
+  background-color:#e7ecef;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 20px;
 }
 .event-Photo__holder img{
   width: 500px;

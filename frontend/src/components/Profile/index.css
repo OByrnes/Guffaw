@@ -57,6 +57,10 @@
   background-color:rgba(207, 219, 213, .5);
   cursor: pointer;
 }
+.main-content{
+  min-height: 1200px;
+  min-width: 1000px;
+}
 .user-holder{
   display: flex;
   flex-direction: column;
@@ -258,4 +262,5 @@
   .splash-Landing__container a {
     font-size: 10px;
   }
+ 
 }

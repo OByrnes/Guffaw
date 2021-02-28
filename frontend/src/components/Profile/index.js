@@ -63,10 +63,11 @@ if (!user) return (
       </ul>
 
     </div>
-
+   
   </div>
 )
 return isLoaded && (
+  <div className="main-content">
   <div className="user-holder">
     <div className="user-info">
       {(!user.userPhoto)? (<div><h3>Add a Profile Picture</h3> <form onSubmit={handleAddPhoto}><label>
@@ -99,6 +100,7 @@ return isLoaded && (
     </div>
 
 
+  </div>
   </div>
 )
 }

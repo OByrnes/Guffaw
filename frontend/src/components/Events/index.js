@@ -22,6 +22,7 @@ const Events = () => {
 
   }
 return (
+  <div className="main-content">
   <div className="events-page__container">
     <h1>Events</h1>
     <div className="individual-events__container">
@@ -34,6 +35,7 @@ return (
       </div><NavLink to={`/events/${event.id}`}><IndividualEvent event={event} /></NavLink></div>)): null}
     </div>
 
+  </div>
   </div>
 )
 }

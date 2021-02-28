@@ -52,6 +52,7 @@ const Comedian = () => {
   if ((comedian === undefined || tags ===undefined )) return null
   
   return (
+    <div className="main-content">
     <div className="comedian-holder">
        <div className="comedian-info">
          <div className="profile-pic"> <img className="profile-image" src={comedian.userPhoto}></img></div> 
@@ -94,7 +95,7 @@ const Comedian = () => {
 
 
   </div>
-
+  </div>
   )
 }
 

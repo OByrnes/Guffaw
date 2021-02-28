@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Truculenta:wght@100;600&display=swap');
 body{
-  background-color:rgba( 229, 229, 229, 1);
+  background-color:#30638e;
   margin: 0px;
   padding: 0px;
   position: relative;
+  
 }
 
 .form-main-page{
@@ -15,4 +16,11 @@ a{
 }
 button{
   cursor: pointer;
+}
+.main-content{
+  background-color:#e7ecef;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 20px;
+  height: max-content;
 }

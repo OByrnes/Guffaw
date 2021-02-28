@@ -38,6 +38,7 @@ const SignUp = () => {
 
 
   return (
+    <div className="main-content">
     <div className="outer-form-container">
 
       <div className="form-container">
@@ -90,6 +91,7 @@ const SignUp = () => {
           
         </form>
       </div>
+    </div>
     </div>
   )
 }

@@ -9,6 +9,7 @@ const SearchResults = () => {
   if (searchresults === undefined)return (null)
   if (searchresults[0]=== undefined) return (<h1>No Results were found!</h1>)
   if (searchresults[0].firstName !== undefined) return (
+    <div className="main-content">
     <div className="search-result-container">
       <h1>Search Results</h1>
       <div className="search-results">
@@ -23,6 +24,7 @@ const SearchResults = () => {
       <div className="search-results">
         {(searchresults)?searchresults.map(result =><NavLink to={`/events/${result.id}`} ><IndividualEvent key={result.id} event={result}/></NavLink>):null}
       </div>
+    </div>
     </div>
   )
 }

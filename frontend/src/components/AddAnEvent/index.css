@@ -9,7 +9,7 @@ h1{
 .add-event__container{
   margin: 20px;
   padding: 20px;
-  background-color: rgba( 229, 229, 229, 1);
+  
 }
 .add-event__container form{
   display: flex;

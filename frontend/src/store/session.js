@@ -25,10 +25,6 @@ const createUser = (user) => ({
   type: CREATE_USER,
   user
 })
-const showErrors = (errors) => ({
-  type: SHOW_LOGIN_ERRORS,
-  errors
-})
 
 export const loginUser = (user) => async dispatch => {
   const response = await csrfFetch('/api/session', {
@@ -36,13 +32,11 @@ export const loginUser = (user) => async dispatch => {
     
     body: JSON.stringify(user)
   })
-  try{
+  if(response.ok){
     const loggedInUser= await response.json();
     dispatch(logUserIn(loggedInUser))
   }
-  catch(error){
-    dispatch(showErrors(error))
-  }
+  
   
 }
 
@@ -65,6 +59,7 @@ export const createUserThunk = (user) => async dispatch => {
   if (response.ok) {
     const newUser = await response.json()
     dispatch(createUser(newUser.user))
+    return response
   }
 }
 export const addUserPhoto= (user) => async dispatch => {
