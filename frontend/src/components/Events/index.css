@@ -54,3 +54,25 @@
     flex-direction: column;
   }
 }
+@media (max-width: 400px){
+  .events-page__container{
+    max-width: 300px;
+    align-content: center;
+    align-items: center;
+
+  }
+  .individual-events__container{
+    max-width: 300px;
+    flex-direction:column;
+    align-content: center;
+    align-items: center;
+    border-top: 2px solid #d1495b;
+  }
+  .all-the-events-page__container{
+    max-width: 300px;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}

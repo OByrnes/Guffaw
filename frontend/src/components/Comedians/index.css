@@ -11,6 +11,7 @@
   flex-direction: column;
 }
 @media (max-width: 850px){
+
   .individual-comedians__container{
     flex-direction:column;
     align-content: center;
@@ -18,6 +19,21 @@
     border-top: 2px solid #d1495b;
   }
   .all-the-comedians-page__container{
+    align-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+@media (max-width: 450px){
+  .individual-comedians__container{
+    max-width: 300px;
+    flex-direction:column;
+    align-content: center;
+    align-items: center;
+    border-top: 2px solid #d1495b;
+  }
+  .all-the-comedians-page__container{
+    max-width: 300px;
     align-content: center;
     align-items: center;
     flex-direction: column;

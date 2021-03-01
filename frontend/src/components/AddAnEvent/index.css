@@ -86,3 +86,24 @@ option:hover{
     overflow: hidden;
   }
 }
+@media (max-width: 400px){
+  .add-event__container{
+    margin: 0px;
+    padding: 0px;
+    max-width: 300px;
+  }
+  form{
+    width: 300px;
+  }
+  .add-event__element textarea{
+    width: 200px;
+  }
+  .add-event__element label{
+    font-size: 15px;
+    width: 200px;
+  }
+  .new_venue__container{
+    width: 200px;
+    overflow: hidden;
+  }
+}

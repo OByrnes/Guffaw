@@ -36,7 +36,7 @@ const SignUp = () => {
     setErrors(errorArray)
     
   
-  },[firstName, lastName, email, password, location])
+  },[firstName, lastName, email, password, location, comedian])
 
 
   return (

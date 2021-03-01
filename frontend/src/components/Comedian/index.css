@@ -96,3 +96,56 @@ input{
   flex-direction: row;
   flex-wrap: wrap;
 }
+@media (max-width: 850px){
+
+  .comedian-holder{
+    font-family: "open sans";
+    color: #003d5b;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 700px;
+  }
+}
+@media (max-width: 450px){
+  .comedian-holder{
+    max-width: 300px;
+    flex-direction:column;
+    align-content: center;
+    align-items: center;
+    border-top: 2px solid #d1495b;
+  }
+  .all-the-comedians-page__container{
+    max-width: 300px;
+    align-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .tags__container select, .tags__container option, .tags__container input{
+    border: none;
+    background-color: #00798c;
+    color: #003d5b;
+    font-family: "open sans";
+    font-size: 17px;
+    height: 25px;
+    width: 150px;
+    margin: 10px;
+  }
+  .tags__container form{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    height: 25px;
+    margin-bottom: 5px;
+  }
+  .comedian-info{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 10px;
+    margin-top: 20px;
+    
+  }
+}

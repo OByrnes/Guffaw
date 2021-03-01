@@ -24,3 +24,12 @@ button{
   padding: 20px;
   height: max-content;
 }
+@media (max-width: 400px){
+  
+  .main-content{
+    max-width: 300px;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+  }
+}

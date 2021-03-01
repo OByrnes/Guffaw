@@ -188,6 +188,7 @@
     border: 5px solid rgb(68, 73, 95);
     padding: 10px;
     font-family: "open sans";
+    width: 600px;
   }
   .upcoming-shows__header{
     font-family: "open sans";
@@ -262,5 +263,35 @@
   .splash-Landing__container a {
     font-size: 10px;
   }
- 
+ .main-content{
+   max-width: 300px;
+ }
+ .user-info{
+   max-width: 300px;
+  flex-direction: column;
+ }
+ .user-info-text{
+   padding: 0px;
+   border-left: 0px transparent blue;
+   margin-left: 0px;
+   padding-left: 0px;
+ }
+ .upcoming-shows__header{
+   max-width: 300px;
+   font-size: 20px;
+ }
+ .upcoming-shows__header h1{
+   font-size: 25px;
+ }
+ .upcoming-shows__container_profile{
+   max-width: 300px;
+ }
+ .fanEvent__container{
+   max-width: 300px;
+   flex-direction: column;
+   justify-content: center;
+   justify-items: center;
+   align-content: center;
+   align-items: center;
+ }
 }
