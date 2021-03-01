@@ -27,12 +27,13 @@ const SingleEventPage = () => {
     dispatch(comediansOnShow(id))
 
   },[dispatch])
-
-  const {events} = useSelector((state) => state.events)
+  const {currentEvent} = useSelector((state) => state.events)
   const {user} = useSelector((state)=> state.session)
   const {comedian} = useSelector((state)=> state.comedians)
   const {tags} = useSelector((state) => state.tags)
   const {comedianEvents} = useSelector((state) => state.comedianevents)
+  
+  // console.log(event)
   const handleAddComics = () => {
     setShowComics(true)
     dispatch(getAllTheComics())
@@ -46,7 +47,7 @@ const SingleEventPage = () => {
   const handleNewTag = (e) => {
     e.preventDefault()
     if (Number(newTag) === 100000){
-      // console.log("This works .... ", comedianId, allNewTag)
+      
       dispatch(addAllEventNewTag(id, allNewTag))
     }else{
       dispatch(addNewTag(id, newTag))
@@ -54,28 +55,28 @@ const SingleEventPage = () => {
     setShowInput(false)
   }
   const addComicToShow = (comicID) => {
-    // console.log("THIS IS A CLICK", comicID)
-    dispatch(addToShow(comicID, events.id))
+   
+    dispatch(addToShow(comicID, currentEvent.id))
     setShowComics(false)
   //   }
   }
   
 
-  if((events===undefined || tags === undefined) ) return null
+  if((typeof currentEvent == 'undefined' || typeof tags == 'undefined') ) return null
   return (
     <div className="event-holder">
       <div className="event-info__container">
-        {(events.eventPhoto)?(<div className="event-Photo__holder"><img src={events.eventPhoto} /> </div>):(<div className="event-Photo__holder"><img src={logourl} /> </div>)}
+        {(currentEvent.eventPhoto)?(<div className="event-Photo__holder"><img src={currentEvent.eventPhoto} /> </div>):(<div className="event-Photo__holder"><img src={logourl} /> </div>)}
         <div className="event-info-text">
-          <h1>{events.name}</h1>
-           <p>{events.description}</p>
-           {(events.price >0)?<h3>{`Event Ticket Price: $${events.price}`}</h3>:null}
-           {(events.ticketed)?<a href={events.Venue.websiteUrl}>Get Tickets</a>:null}
+          <h1>{currentEvent.name}</h1>
+           <p>{currentEvent.description}</p>
+           {(currentEvent.price >0)?<h3>{`Event Ticket Price: $${currentEvent.price}`}</h3>:null}
+           {(currentEvent.ticketed)?<a href={currentEvent.Venue.websiteUrl}>Get Tickets</a>:null}
           <div className="types__container">
-            {events.Types? events.Types.map(type => <div className="type_div"><h2>{type.type}</h2></div>):null}
+            {currentEvent.Types? currentEvent.Types.map(type => <div className="type_div"><h2>{type.type}</h2></div>):null}
           </div>
           <div className="tags__container"><h3>Tags</h3><ul className="tags-list">
-            {(events.Tags)?events.Tags.map(tag => (<li key={tag.id}>{tag.tagText}</li>)):null}
+            {(currentEvent.Tags)?currentEvent.Tags.map(tag => (<li key={tag.id}>{tag.tagText}</li>)):null}
           </ul>
           <div className="add_tag__container">
             <form onSubmit={handleNewTag}>
@@ -91,15 +92,15 @@ const SingleEventPage = () => {
         </div>
         </div>
       </div>
-        <Venue venue={events.Venue}/>
-          {(user!== undefined && events.host === user.id)? (
+        <Venue venue={currentEvent.Venue}/> 
+          {(typeof user!== 'undefined' && currentEvent.host === user.id)? (
         <div className="add_comics_to_show" id="addToShow">
             
-            <button type="button" id={events.id} onClick={handleAddComics}><h2>Add Comics to Show</h2></button>
+            <button type="button" id={currentEvent.id} onClick={handleAddComics}><h2>Add Comics to Show</h2></button>
           </div>
           ):null}
          {(showComics)?<div className="all_the_comics" hidden={!showComics}>
-          {(comedian!==undefined)?comedian.map(comic => (<div className="addToShow__comic_holder" onClick={()=>addComicToShow(comic.id)}><ComedianThumbnail comic={comic} /></div>)): null}</div>: null } 
+          {(typeof comedian!=='undefined')?comedian.map(comic => (<div className="addToShow__comic_holder" onClick={()=>addComicToShow(comic.id)}><ComedianThumbnail comic={comic} /></div>)): null}</div>: null } 
 
         
         <div className="comics-lineup__container">
@@ -107,13 +108,13 @@ const SingleEventPage = () => {
           <h1>Comics on the Lineup</h1>
           </div>
           <div className="all-the-comedians-page__container_EventPage">
-          {(events.Users && events !== undefined)? events.Users.map(comedian => (<NavLink to={`/comedians/${comedian.id}`}><ComedianThumbnail comic={comedian} /></NavLink>)):null}
+          {(currentEvent.Users && typeof currentEvent !== 'undefined')? currentEvent.Users.map(comedian => (<NavLink to={`/comedians/${comedian.id}`}><ComedianThumbnail comic={comedian} /></NavLink>)):null}
               </div>
           
         </div>
     </div>
     
   )
-}
+ }
 
 export default SingleEventPage

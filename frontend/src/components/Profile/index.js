@@ -26,7 +26,7 @@ const Profile = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   
   useEffect(()=>{
-    if(user !==undefined && user.comedian){
+    if(typeof user !=='undefined' && user.comedian){
       dispatch(getComedianStats(user.id))
     }
     if(user){
@@ -93,7 +93,7 @@ return isLoaded && (
           </NavLink>
         </div>
         <div className="fanEvent__container">
-          {(fans.events)?fans.events.map(ele => (<NavLink  to={`/events/${ele.Event.id}`}><IndividualEvent key={ele.Event.id} event={ele.Event} /></NavLink>)): null}
+          {(fans.events)?fans.events.map((ele,i) => (<NavLink  to={`/events/${ele.Event.id}`}><IndividualEvent key={`${ele.Event.id}${i}`} event={ele.Event} /></NavLink>)): null}
 
         </div>
 

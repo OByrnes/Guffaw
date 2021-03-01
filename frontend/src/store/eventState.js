@@ -103,18 +103,18 @@ const eventReducer =  (state= {}, action) => {
   
   switch (action.type) {
     case CREATE_EVENT: {
-      const newState = {...state}
+      const newState = deepcopy(state)
       newState.event=action.event
       return newState
     }
     case GET_ALL_EVENTS: {
-      const newState = {...state}
+      const newState = deepcopy(state)
       newState.events = action.events
       return newState
     }
     case GET_ONE_EVENT: {
-      const newState = {...state}
-      newState.events = action.event
+      const newState = deepcopy(state)
+      newState.currentEvent = action.event
       return newState
     }
    

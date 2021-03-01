@@ -34,14 +34,14 @@ return (
     <div className="featured">
       <h1>Featured</h1>
       <div className='individual-comedians__container'>
-        {(featuredComics)?featuredComics.map(comedian => <NavLink to={`/comedians/${comedian.id}`}><FeaturedThumbnail comic={comedian} /></NavLink>): null}
+        {(featuredComics)?featuredComics.map(comedian => <NavLink to={`/comedians/${comedian.id}`}><FeaturedThumbnail key={comedian.id} comic={comedian} /></NavLink>): null}
 
       </div>
 
     </div>
     <h1>All The Comics</h1>
     <div className="individual-comedians__container">
-      {(comedian && comedian[0] !== undefined)?comedian.map(comic => (<NavLink to={`/comedians/${comic.id}`}><ComedianThumbnail comic={comic} /></NavLink>)): null}
+      {(comedian && comedian[0] !== undefined)?comedian.map(comic => (<NavLink to={`/comedians/${comic.id}`}><ComedianThumbnail key ={comic.id}comic={comic} /></NavLink>)): null}
     </div>
 
   </div>

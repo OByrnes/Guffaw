@@ -5,9 +5,9 @@ import ComedianThumbnail from "../ComedianThumbnail";
 import IndividualEvent from "../IndividualEvent"
 const SearchResults = () => {
   const {searchresults} = useSelector((state) => state.search)
-  if (searchresults === undefined)return (null)
-  if (searchresults[0]=== undefined) return (<h1>No Results were found!</h1>)
-  if (searchresults[0].firstName !== undefined) return (
+  if (typeof searchresults == 'undefined')return (null)
+  else if (typeof searchresults[0]== 'undefined') return (<h1>No Results were found!</h1>)
+  else if (typeof searchresults[0].firstName !== 'undefined') return (
     <div className="main-content">
     <div className="search-result-container">
       <h1>Search Results</h1>
@@ -18,7 +18,7 @@ const SearchResults = () => {
     </div>
     </div>
   )
-  if (searchresults[0].venueId !== undefined) return (
+  else if (typeof searchresults[0].venueId !== 'undefined') return (
     <div className="main-content">
     <div className="search-result-container">
       <h1>Search Results</h1>

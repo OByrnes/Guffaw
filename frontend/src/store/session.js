@@ -34,7 +34,7 @@ export const loginUser = (user) => async dispatch => {
   })
   if(response.ok){
     const loggedInUser= await response.json();
-    dispatch(logUserIn(loggedInUser))
+    dispatch(logUserIn(loggedInUser.user))
   }
   
   
@@ -47,7 +47,7 @@ export const logOutUser = (user) => async dispatch => {
   })
   if (response.ok) {
     const loggedOutUser = await response.json();
-    dispatch(logUserOut(loggedOutUser))
+    dispatch(logUserOut(loggedOutUser.user))
   }
 }
 
@@ -96,7 +96,7 @@ export const addUserDescription= (user) => async dispatch => {
   })
   if (response.ok) {
     const userWithDescription= await response.json();
-    dispatch(logUserIn(userWithDescription))
+    dispatch(logUserIn(userWithDescription.user))
     return response
   }
 
@@ -127,11 +127,7 @@ const sessionReducer =  (state= {}, action) => {
       newState.user = action.user
       return newState
     }
-    case SHOW_LOGIN_ERRORS: {
-      const newState = deepcopy(state)
-      newState.user = action.errors
-      return newState
-    }
+   
     default: {
       return state
     }

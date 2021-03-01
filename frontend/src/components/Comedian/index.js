@@ -19,7 +19,7 @@ const Comedian = () => {
   useEffect(()=>{
     dispatch(getComedianStats(comedianId))
     dispatch(getAllTags())
-  },[dispatch, comedian])
+  },[dispatch])
 
   useEffect(()=>{
     if(Number(newTag)===100000){

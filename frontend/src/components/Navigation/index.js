@@ -51,13 +51,12 @@ const Navigation = ({dropDownShown}) => {
 
         
         <div className="icon__container">
-          {(!searchShown)?<i className="fas fa-search search" onClick={()=>setSearchhown(true)}></i>: <i class="fas fa-window-close" onClick={()=>setSearchhown(false)}></i>}
+          {(!searchShown)?<i className="fas fa-search search" onClick={()=>setSearchhown(true)}></i>: <i className="fas fa-window-close" onClick={()=>setSearchhown(false)}></i>}
           <i className="far fa-user user" id="showDD">
           </i>  
         </div>
         {(dropDownShown)? <DropDown className="drop-down" user={user}/> : null}
-        {/* {(searchDropDownShown)? <SearchDropDown className="search-drop-down" /> : null} */}
-
+        
     </nav>
   )
 }

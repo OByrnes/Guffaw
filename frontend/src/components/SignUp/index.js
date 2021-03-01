@@ -13,7 +13,7 @@ const SignUp = () => {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmedPassword] = useState('')
   const [location, setLocation] = useState('')
-  const [comedian, setComedian] = useState(false)
+  const [comedian, setComedian] = useState('')
   const [errors, setErrors] = useState([])
   const history = useHistory()
   const dispatch = useDispatch()
@@ -32,9 +32,11 @@ const SignUp = () => {
     if (email.length < 3) errorArray.push("please enter your email")
     if (password.length < 6 ) errorArray.push('Enter your password.')
     if (confirmPassword !== password) errorArray.push('re-enter your password')
+    
     setErrors(errorArray)
+    
   
-  },[firstName, lastName, email, password, comedian, location])
+  },[firstName, lastName, email, password, location])
 
 
   return (

@@ -32,7 +32,7 @@ return (
 
       </div>
       
-      </div><NavLink to={`/events/${event.id}`}><IndividualEvent event={event} /></NavLink></div>)): null}
+      </div><NavLink to={`/events/${event.id}`}><IndividualEvent key={event.id} event={event} /></NavLink></div>)): null}
     </div>
 
   </div>
