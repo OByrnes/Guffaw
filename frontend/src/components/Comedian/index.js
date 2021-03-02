@@ -46,10 +46,16 @@ const Comedian = () => {
     }
     
   }
-
+  let upcomingEvents;
+  let pastEvents;
+  if(typeof comedian !== 'undefined' && typeof comedian.Events !== 'undefined') { 
+    console.log(typeof comedian)
+    upcomingEvents = comedian.Events.filter(event => Date.parse(event.date) > Date.now())
+    console.log(Date.now())
+    pastEvents = comedian.Events.filter(event => Date.parse(event.date) < Date.now())
+  }
   
-  
-  if ((comedian === undefined || tags ===undefined )) return null
+  if ((typeof comedian === 'undefined' || typeof tags ==='undefined' )) return null
   
   return (
     <div className="main-content">
@@ -89,10 +95,16 @@ const Comedian = () => {
             <h1>{`${comedian.firstName} ${comedian.lastName} upcoming events`}</h1>
           </div>
         <div className="upcoming-Shows__container">
-          {(comedian.Events)?comedian.Events.map(event => (<NavLink to={`/events/${event.id}`}><IndividualEvent event={event} /></NavLink>)): null}
+          {(upcomingEvents)?upcomingEvents.map(event => (<NavLink to={`/events/${event.id}`}><IndividualEvent event={event} /></NavLink>)): null}
 
       </div> 
+      <div className="past-shows__header">
+            <h1>{`${comedian.firstName} ${comedian.lastName} past events`}</h1>
+          </div>
+        <div className="upcoming-Shows__container">
+          {(pastEvents)?pastEvents.map(event => (<NavLink to={`/events/${event.id}`}><IndividualEvent event={event} /></NavLink>)): null}
 
+      </div> 
 
   </div>
   </div>

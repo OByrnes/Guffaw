@@ -10,7 +10,7 @@ import {getComedianStats} from "../../store/comedianState"
 import { getFanAllEvents } from '../../store/fanState'
 
 const Profile = () => {
-
+  const [showPastEvents, setShowPastEvents] = useState(true)
   const [image, setImage] = useState(null);
   const {user} = useSelector((state)=> state.session)
   const {fans} = useSelector((state) => state)
@@ -48,7 +48,13 @@ const Profile = () => {
     userWithDescription.description=newDescription
     dispatch(addUserDescription(userWithDescription))
   }
-  
+  let upcomingEvents;
+  let pastEvents;
+  if(typeof fans.events !== 'undefined'){
+    upcomingEvents = fans.events.filter(event => Date.parse(event.Event.date) > Date.now())
+    pastEvents = fans.events.filter(event => Date.parse(event.Event.date) < Date.now())
+
+  }
 if (!user) return (
   <div className= "outer-splash">
     <div className="splash-Landing__container">
@@ -93,7 +99,12 @@ return isLoaded && (
           </NavLink>
         </div>
         <div className="fanEvent__container">
-          {(fans.events)?fans.events.map((ele,i) => (<NavLink  to={`/events/${ele.Event.id}`}><IndividualEvent key={`${ele.Event.id}${i}`} event={ele.Event} /></NavLink>)): null}
+          {(upcomingEvents)?upcomingEvents.map((ele,i) => (<NavLink  to={`/events/${ele.Event.id}`}><IndividualEvent key={`${ele.Event.id}${i}`} event={ele.Event} /></NavLink>)): null}
+
+        </div>
+        {(showPastEvents)? <h1> Past Events</h1>: <div>Show Past Events </div>}
+        <div className="fanEvent__container" >
+          {(pastEvents)?pastEvents.map((ele,i) => (<NavLink  to={`/events/${ele.Event.id}`}><IndividualEvent key={`${ele.Event.id}${i}`} event={ele.Event} /></NavLink>)): null}
 
         </div>
 
