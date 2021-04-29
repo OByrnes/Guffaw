@@ -45,7 +45,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-/public/images/
+
 
 Small comedy events have a hard time finding audiences. Its hard to promote their shows. They often don't have their own websites. Guffaw helps them showcase themselves and allows users to discover new talent in their area and shows to go to.
 
@@ -163,8 +163,7 @@ This Project relies on React and redux for the frontend and express for the back
 
 
 ### Database Schema
-  <img src="/frontend/src/images/guffawDatabaseSchema1.png" alt="Schema" width="600" height="600">
-  ![Shema](https://github.com/Obyrnes/TailTracker/blob/main/frontend/src/images/guffawDatabaseSchema1.png?raw=true)
+![Shema](https://github.com/Obyrnes/Guffaw/blob/main/frontend/src/images/guffawDatabaseSchema1.png?raw=true)
 
 
 
