@@ -36,7 +36,7 @@ router.get("/", asyncHandler (async (req, res) =>{
   
   res.json(events)
 }))
-router.delete("/", asyncHandler (async (req, res) => {
+router.delete("/:id", asyncHandler (async (req, res) => {
   const oldEvent = await Event.findByPk(req.params.id)
   
     eventToTag.destroy({where: {
@@ -64,14 +64,15 @@ router.post("/", singleMulterUpload("image"), asyncHandler (async (req, res) => 
   const newEvent = await Event.create({name, venueId, eventPhoto: eventImageUrl, date, recurring, description, host, ticketed, price})
   types.split(',').forEach( async type => await eventToType.create({eventId: newEvent.id, typeId: Number(type)}))
   
+  
   res.json(newEvent)
 }))
 
 router.put("/:id", asyncHandler (async (req, res) => {
   const {eventId, comedianId} = req.body
   await comedianToEvent.create({comedianId, eventId})
-  let updatedEvent = await Event.findByPk(eventId, {include: [User, Venue, Tag]})
-  res.json(updatedEvent)
+  let comic = await User.findByPk(comedianId)
+  res.json(comic)
 }))
 
 router.post("/addvenue", singleMulterUpload("image"), asyncHandler (async (req, res) => {

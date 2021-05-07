@@ -35,6 +35,7 @@ export const loginUser = (user) => async dispatch => {
   if(response.ok){
     const loggedInUser= await response.json();
     dispatch(logUserIn(loggedInUser.user))
+    return loggedInUser
   }
   
   
@@ -59,6 +60,8 @@ export const createUserThunk = (user) => async dispatch => {
   if (response.ok) {
     const newUser = await response.json()
     dispatch(createUser(newUser.user))
+    return newUser
+  }else{
     return response
   }
 }
@@ -85,7 +88,7 @@ export const addUserPhoto= (user) => async dispatch => {
   
   const data = await res.json();
   dispatch(logUserIn(data.user));
-  return res
+  return data.user
 };
 
 export const addUserDescription= (user) => async dispatch => {

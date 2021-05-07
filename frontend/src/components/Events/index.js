@@ -33,26 +33,26 @@ return (
   <div className="events-page__container">
     <h1>Events</h1>
     <div className="individual-events__container">
-      {(upcomingEvents)?upcomingEvents.map(event => (<div className="eventContainer"><div className="add_event_icon_holder">
+      {(upcomingEvents)?upcomingEvents.map(event => (<div key={`${event.id}${event.title}`} className="eventContainer"><div className="add_event_icon_holder">
       <div className="heart_container" onClick={()=>handleLikeEvent(event.id, user.id)}>
         <i className="far fa-heart"></i>
 
       </div>
       
-      </div><NavLink to={`/events/${event.id}`}><IndividualEvent key={event.id} event={event} /></NavLink></div>)): null}
+      </div><NavLink to={`/events/${event.id}`}><IndividualEvent event={event} /></NavLink></div>)): null}
     </div>
     <div className="past-events__container" hidden={showPastEvents}>
       <div className="past-events__container-header">
         <h1>Past Events</h1>
 
       </div>
-      {(pastEvents)?pastEvents.map(event => (<div className="eventContainer"><div className="add_event_icon_holder">
+      {(pastEvents)? pastEvents.map(event => (<div key={event.id} className="eventContainer"><div className="add_event_icon_holder">
       <div className="heart_container" onClick={()=>handleLikeEvent(event.id, user.id)}>
         <i className="far fa-heart"></i>
 
       </div>
       
-      </div><NavLink to={`/events/${event.id}`}><IndividualEvent key={event.id} event={event} /></NavLink></div>)): null}
+      </div><NavLink to={`/events/${event.id}`}><IndividualEvent  event={event} /></NavLink></div>)): null}
     </div>
 
 

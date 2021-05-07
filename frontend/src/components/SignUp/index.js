@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom";
 import { createUserThunk } from "../../store/session"
 import "./index.css"
@@ -13,17 +13,25 @@ const SignUp = () => {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmedPassword] = useState('')
   const [location, setLocation] = useState('')
-  const [comedian, setComedian] = useState('')
+  const [comedian, setComedian] = useState(true)
   const [errors, setErrors] = useState([])
+  let {user} = useSelector((state)=> state.session)
   const history = useHistory()
   const dispatch = useDispatch()
-  const redirect =() => history.replace('/')
-  const handleSubmit = (e)=> {
+  const redirect =() => history.replace('/events')
+  const handleSubmit = async (e)=> {
     e.preventDefault()
-    dispatch(createUserThunk({firstName, lastName, email, password, comedian, location}))
-    redirect()
+    let result = await dispatch(createUserThunk({firstName, lastName, email, password, comedian, location}))
+    if(!result.ok || result.errors){
+      setErrors(result.errors)
+    }
     
   }
+  useEffect(()=>{
+    if(user){
+      redirect()
+    }
+  },[dispatch])
   useEffect(()=> {
     let errorArray = []
     
@@ -36,7 +44,7 @@ const SignUp = () => {
     setErrors(errorArray)
     
   
-  },[firstName, lastName, email, password, location, comedian])
+  },[firstName, lastName, email, password, location, confirmPassword])
 
 
   return (

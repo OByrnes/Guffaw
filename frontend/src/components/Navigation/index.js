@@ -11,11 +11,13 @@ import {searchComedian, searchVenue} from "../../store/searchStore"
 
 
 
-const Navigation = ({dropDownShown}) => {
+const Navigation = ({dropDownShown, searchDropDownShown, setSearchDropDownShown}) => {
   const history = useHistory()
+  
+  
   const { user } = useSelector((state)=> state.session)
   const dispatch = useDispatch()
-  const [searchShown, setSearchhown] = useState(false)
+  // const [searchShown, setSearchhown] = useState(false)
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [location, setLocation] = useState('')
@@ -37,7 +39,7 @@ const Navigation = ({dropDownShown}) => {
             <img id="logo" src={logourl} height="100px" />
         </NavLink>
         
-           {(searchShown)? (<div className="searchContainer"><form  className="searchForm" onSubmit={HandleSearchSubmitComedian}>
+           {(searchDropDownShown)? (<div className="searchContainer"><form  className="searchForm" onSubmit={HandleSearchSubmitComedian}>
             <input value={firstName} type="text" placeholder="first name" onChange={(e)=>setFirstName(e.target.value)}/>
             <input value={lastName} type="text" placeholder="last name"onChange={(e)=>setLastName(e.target.value)} />
             <input value={location} type="text" placeholder="location ex. Dayton, OH" onChange={(e)=>setLocation(e.target.value)} />
@@ -51,7 +53,7 @@ const Navigation = ({dropDownShown}) => {
 
         
         <div className="icon__container">
-          {(!searchShown)?<i className="fas fa-search search" onClick={()=>setSearchhown(true)}></i>: <i className="fas fa-window-close" onClick={()=>setSearchhown(false)}></i>}
+          {(!searchDropDownShown)?<i id='searchShow' className="fas fa-search search"></i>: <i className="fas fa-window-close" onClick={()=>setSearchDropDownShown(false)} ></i>}
           <i className="far fa-user user" id="showDD">
           </i>  
         </div>

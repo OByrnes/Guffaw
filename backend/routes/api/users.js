@@ -38,12 +38,21 @@ const validateSignup =[
 ]
 router.post('/',validateSignup, asyncHandler(asyncHandler( async (req, res) => {
   const {email, password, firstName, lastName, comedian, location} = req.body;
-  const user = await User.signup({email, firstName, lastName, password, comedian, location });
-  await setTokenCookie(res, user)
+  const existingUser = await User.findOne({where: {email: email}})
+  if(existingUser){
+    return res.json(
+      {"errors": ["this email is already in use"]}
+    )
+  }
+  else{
 
-  return res.json(
-    user
-  )
+    const user = await User.signup({email, firstName, lastName, password, comedian, location });
+    await setTokenCookie(res, user)
+    
+    return res.json(
+      user
+    )
+  }
 })))
 
 router.post('/:id/photo', singleMulterUpload("image"), asyncHandler( async (req, res) => {
@@ -51,11 +60,19 @@ router.post('/:id/photo', singleMulterUpload("image"), asyncHandler( async (req,
   const user = await User.findByPk(req.body.id)
   await user.update({userPhoto: profileImageUrl})
   
+  return res.json(
+    user.dataValues
+  )
+
+  
 }))
 
 router.post("/:id/description", asyncHandler(async (req, res) => {
   const user = await User.findByPk(req.body.id)
   await user.update({description: req.body.description})
+  return res.json(
+    user.dataValues
+  )
 }))
 
 // router.get("/:id", asyncHandler(async (req, res) => {

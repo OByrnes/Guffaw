@@ -23,7 +23,8 @@ router.get("/", asyncHandler (async (req, res) => {
 
 router.patch("/:id", asyncHandler (async (req, res) => {
   const {upVote} = req.body
-  const comedian = await User.findByPk(req.params.id)
+  const comedian = await User.findOne({where: {id: req.params.id}, include:[Event, Tag]})
+  
   await comedian.update({upVote: upVote})
   res.json(comedian)
 }))

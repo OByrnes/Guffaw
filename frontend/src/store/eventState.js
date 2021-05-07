@@ -80,6 +80,7 @@ export const addNewEvent = (event) => async dispatch => {
   
   const data = await res.json();
   dispatch(addEvent(data));
+  return data
 };
 
 export const getAllTheEvents = () => async dispatch => {
@@ -104,7 +105,9 @@ const eventReducer =  (state= {}, action) => {
   switch (action.type) {
     case CREATE_EVENT: {
       const newState = deepcopy(state)
-      newState.event=action.event
+      let events = state.events
+      events.push(action.event)
+      newState.events=events
       return newState
     }
     case GET_ALL_EVENTS: {

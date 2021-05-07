@@ -16,46 +16,55 @@ const Comedian = () => {
   const {comedian} = useSelector((state) => state.comedians)
   
   const {tags} = useSelector((state) => state.tags)
-  useEffect(()=>{
-    dispatch(getComedianStats(comedianId))
-    dispatch(getAllTags())
-  },[dispatch])
-
+  
   useEffect(()=>{
     if(Number(newTag)===100000){
       setShowInput(true)
     }
   },[newTag])
-  const handleNewTag = (e) => {
+  const handleNewTag = async (e) => {
     e.preventDefault()
     if (Number(newTag) === 100000){
-      // console.log("This works .... ", comedianId, allNewTag)
-      dispatch(addAllNewTag(comedianId, allNewTag))
+      let tag = await dispatch(addAllNewTag(comedianId, allNewTag))
+      comedian.Tags.push(tag)
     }else{
-      dispatch(addComedianNewTag(comedianId, newTag))
+      let tag = await dispatch(addComedianNewTag(comedianId, newTag))
+      
+      comedian.Tags.push(tag)
+      
     }
     setShowInput(false)
   }
+  
+  useEffect(()=>{
+    dispatch(getComedianStats(comedianId))
+    dispatch(getAllTags())
+    if(comedian){
 
-  const handleUpVote = () => {
+      console.log(comedian.Tags)
+    }
+  },[dispatch])
+  const handleUpVote =async () => {
     if(comedian.upVote === null){
-      dispatch(addUpVote(1, comedianId))
+       dispatch(addUpVote(1, comedianId))
+      
     }else{
-      dispatch(addUpVote(comedian.upVote+1, comedianId))
-
+     dispatch(addUpVote(comedian.upVote+1, comedianId))
+     
     }
     
   }
   let upcomingEvents;
   let pastEvents;
-  if(typeof comedian !== 'undefined' && typeof comedian.Events !== 'undefined') { 
-    console.log(typeof comedian)
+  if(comedian && comedian.Events) { 
+    
     upcomingEvents = comedian.Events.filter(event => Date.parse(event.date) > Date.now())
-    console.log(Date.now())
+    
     pastEvents = comedian.Events.filter(event => Date.parse(event.date) < Date.now())
+    
   }
   
-  if ((typeof comedian === 'undefined' || typeof tags ==='undefined' )) return null
+  if ((!comedian|| !tags)) return null;
   
   return (
     <div className="main-content">
@@ -73,7 +82,9 @@ const Comedian = () => {
 
            </div>
           
-          <div className="tags__container"><h3>Tags</h3><ul className="tags-list">
+          <div className="tags__container">
+            <h3>Tags</h3>
+          <ul className="tags-list">
             {(comedian.Tags)?comedian.Tags.map(tag => (<li key={tag.id}>{tag.tagText}</li>)):null}
           </ul>
           <div className="add_tag__container">
@@ -95,14 +106,14 @@ const Comedian = () => {
             <h1>{`${comedian.firstName} ${comedian.lastName} upcoming events`}</h1>
           </div>
         <div className="upcoming-Shows__container">
-          {(upcomingEvents)?upcomingEvents.map(event => (<NavLink to={`/events/${event.id}`}><IndividualEvent event={event} /></NavLink>)): null}
+          {(upcomingEvents)?upcomingEvents.map(event => (<NavLink to={`/events/${event.id}`} key={event.id}><IndividualEvent event={event} /></NavLink>)): null}
 
       </div> 
       <div className="past-shows__header">
             <h1>{`${comedian.firstName} ${comedian.lastName} past events`}</h1>
           </div>
         <div className="upcoming-Shows__container">
-          {(pastEvents)?pastEvents.map(event => (<NavLink to={`/events/${event.id}`}><IndividualEvent event={event} /></NavLink>)): null}
+          {(pastEvents)?pastEvents.map(event => (<NavLink to={`/events/${event.id}`} key={event.id}><IndividualEvent event={event} /></NavLink>)): null}
 
       </div> 
 

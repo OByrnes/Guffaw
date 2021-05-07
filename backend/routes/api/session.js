@@ -18,7 +18,7 @@ const validateLogin = [
 ]
 router.post(
   '/', validateLogin,
-  asyncHandler(async (req, res, next) => {
+  asyncHandler(async (req, res) => {
     const { credential, password } = req.body;
 
     const user = await User.login({ credential, password });
@@ -28,13 +28,13 @@ router.post(
       err.status = 401;
       err.title = 'Login failed';
       err.errors = ['The provided credentials were invalid.'];
-      return next(err);
+      return res.json(err);
     }
 
     await setTokenCookie(res, user);
 
     return res.json({
-      user,
+      user
     });
   }),
 );

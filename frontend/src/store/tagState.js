@@ -45,8 +45,10 @@ export const addComedianNewTag = (comedianId, tagId) => async dispatch => {
   })
   if (response.ok){
     const newtag = await response.json()
-    // dispatch(addATag(newtag))
+    
+    return newtag
   }
+  
 }
 
 export const addAllEventNewTag = (eventId, allNewTag) => async dispatch => {
@@ -58,7 +60,8 @@ export const addAllEventNewTag = (eventId, allNewTag) => async dispatch => {
   if (response.ok) {
 
     const newtag = await response.json()
-    dispatch(addTag(newtag))
+    
+    return newtag
   }
 }
 
@@ -70,7 +73,11 @@ export const addNewTag = (eventId, tagId) => async dispatch => {
   })
   if (response.ok){
     const newtag = await response.json()
-    
+    dispatch(addTag(newtag))
+    return newtag
+  }
+  else{
+    return {"message": "something went wrong"}
   }
 }
 const tagsReducer = (state={}, action) => {

@@ -4,7 +4,7 @@ import {NavLink, useHistory} from "react-router-dom"
 import { useDispatch } from "react-redux"
 
 import {getAllTheVenues} from "../../store/venueState"
-import {addNewEvent, addNewVenueAndEvent} from "../../store/eventState"
+import {addNewEvent, addNewVenueAndEvent, getAllTheEvents} from "../../store/eventState"
 import "./index.css"
 const AddAnEvent = () => {
   const venueTypes =["bar","brewery","comedyClub","restaurant","coffeeShop", "other"]
@@ -31,28 +31,35 @@ const AddAnEvent = () => {
   },[venueId])
   useEffect(()=>{
     dispatch(getAllTheVenues())
+    dispatch(getAllTheEvents())
   },[dispatch])
   const {user} = useSelector((state)=> state.session)
   const {venues} = useSelector((state) => state.venues)
+  const {events} = useSelector((state) => state.events)
   const updateFile = (e) => {
     const file = e.target.files[0];
     if (file) setEventPhoto(file);
     
   };
   const history = useHistory()
-  const handleSubmit = (e) =>{
+  const handleSubmit = async (e) =>{
     e.preventDefault()
     if(Number(venueId) !== 10000000000000000000000000000000000000){
       const newEvent= {name, date, eventPhoto, description, recurring, host: user.id, venueId, price,ticketed, types}
       
-      dispatch(addNewEvent(newEvent))
+      let updatedEvent = await dispatch(addNewEvent(newEvent))
+      events.push(updatedEvent)
+      history.replace(`/events/${updatedEvent.id}`)
+
 
     }else{
       const addedVenue = {newVenueWebsiteUrl, newVenue, newVenueAddress, newVenueType}
       const newEvent = {name, date, eventPhoto, description, recurring, host: user.id, venueId, price,ticketed, types}
-      dispatch(addNewVenueAndEvent(newEvent, addedVenue))
+      let updatedEvent = await dispatch(addNewVenueAndEvent(newEvent, addedVenue))
+      events.push(updatedEvent)
+      history.replace(`/events/${updatedEvent.id}`)
+
     }
-    history.replace("/events")
   }
   
   const handleTypes = (e) => {

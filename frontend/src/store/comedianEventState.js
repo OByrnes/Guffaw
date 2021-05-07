@@ -37,6 +37,7 @@ export const addToShow = (comicId, eventId) => async dispatch => {
   if (res.ok) {
     const event = await res.json()
     dispatch(comedianAddedEvent(event))
+    return event
   }
 }
 

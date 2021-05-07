@@ -21,41 +21,49 @@ const Profile = () => {
   };
   const [editDescription, setEditDescription] = useState(false)
   const [newDescription, setNewDescription] = useState('')
-  const [showToolTip, setShowToolTip] = useState(false)
-  const dispatch = useDispatch()
   const [isLoaded, setIsLoaded] = useState(false);
+  const dispatch = useDispatch()
   
   useEffect(()=>{
-    if(typeof user !=='undefined' && user.comedian){
+    
+    if( user && user.comedian){
       dispatch(getComedianStats(user.id))
     }
     if(user){
+      setIsLoaded(true)
       dispatch(getFanAllEvents(user.id))
     }
-    setIsLoaded(true)
     
   },[dispatch])
   
-  const handleAddPhoto= (e) => {
+  const handleAddPhoto=async (e) => {
     e.preventDefault()
     const userWithPhoto = {...user}
     userWithPhoto.userPhoto= image
-     dispatch(addUserPhoto(userWithPhoto))
+    let newUser = await dispatch(addUserPhoto(userWithPhoto))
+    if(newUser){
+       user.userPhoto = newUser.userPhoto
+    }
   }
-  const handleEditDescription = (e)=>{
+  const handleEditDescription = async (e)=>{
     e.preventDefault()
     const userWithDescription = {... user}
     userWithDescription.description=newDescription
-    dispatch(addUserDescription(userWithDescription))
+    let updatedUser = await dispatch(addUserDescription(userWithDescription))
+    if(updatedUser){
+      user.description = updatedUser.description
+    }
+
   }
   let upcomingEvents;
   let pastEvents;
-  if(typeof fans.events !== 'undefined'){
+  if(fans.events){
     upcomingEvents = fans.events.filter(event => Date.parse(event.Event.date) > Date.now())
     pastEvents = fans.events.filter(event => Date.parse(event.Event.date) < Date.now())
-
+    
   }
 if (!user) return (
+  <>
   <div className= "outer-splash">
     <div className="splash-Landing__container">
       <NavLink to="/signup">Create a New Account</NavLink>
@@ -69,8 +77,38 @@ if (!user) return (
       </ul>
 
     </div>
-   
   </div>
+   <footer>
+    
+     <section id="contact-me">
+                                <header>
+                                    <h2>Reach Out</h2>
+                                </header>
+                                <ul class="social">
+                                    
+                                    
+										<li><a  href="https://github.com/OByrnes"><i class="fab fa-github-square"></i></a></li>
+										<li><a class="icon brands fa-linkedin-in" href="https://www.linkedin.com/in/olivia-byrnes-85861b1b3/"><span class="label">LinkedIn</span></a></li>
+                                </ul>
+                                <ul  class="contact">
+                                    <li>
+                                        <h3>City</h3>
+                                        <p>
+                                            Dayton, OH 45403
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <h3>E-Mail</h3>
+                                        <p><a href="#">olivia@oliviabyrnes.com</a></p>
+                                    </li>
+                                    <li>
+                                        <h3>Phone</h3>
+                                        <p>(937) 831-2478</p>
+                                    </li>
+                                </ul>
+                            </section>
+   </footer>
+  </>
 )
 return isLoaded && (
   <div className="main-content">
@@ -99,12 +137,12 @@ return isLoaded && (
           </NavLink>
         </div>
         <div className="fanEvent__container">
-          {(upcomingEvents)?upcomingEvents.map((ele,i) => (<NavLink  to={`/events/${ele.Event.id}`}><IndividualEvent key={`${ele.Event.id}${i}`} event={ele.Event} /></NavLink>)): null}
+          {(upcomingEvents)?upcomingEvents.map((ele,i) => (<NavLink  to={`/events/${ele.eventId}`} key={`${ele.eventId}${i}`}><IndividualEvent  event={ele.Event} /></NavLink>)): null}
 
         </div>
         {(showPastEvents)? <h1> Past Events</h1>: <div>Show Past Events </div>}
         <div className="fanEvent__container" >
-          {(pastEvents)?pastEvents.map((ele,i) => (<NavLink  to={`/events/${ele.Event.id}`}><IndividualEvent key={`${ele.Event.id}${i}`} event={ele.Event} /></NavLink>)): null}
+          {(pastEvents)?pastEvents.map((ele,i) => (<NavLink  to={`/events/${ele.eventId}`} key={`${ele.eventId}${i}`}><IndividualEvent  event={ele.Event} /></NavLink>)): null}
 
         </div>
 
