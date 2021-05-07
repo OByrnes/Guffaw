@@ -43,7 +43,8 @@ const fanReducer =  (state= {}, action) => {
     }
     case FAN_LIKE:{
       const newState = deepcopy(state)
-      newState.events = action.event
+      newState.events = state.events
+      newState.events.push(action.event)
       return newState
     }
 

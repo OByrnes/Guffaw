@@ -13,6 +13,7 @@ router.get("/", asyncHandler (async (req, res) => {
 router.post("/new/comedian", asyncHandler (async (req, res) => {
   const {comedianId, tagText} = req.body
   const newTag = await Tag.create({tagText})
+  console.log(newTag)
   const newComTag = await ComedianToTag.create({comedianId, tagId: newTag.id})
   res.json(newTag)
 }))
@@ -20,7 +21,9 @@ router.post("/new/comedian", asyncHandler (async (req, res) => {
 router.post("/comedian" , asyncHandler (async (req, res) => {
   const {comedianId, tagId} = req.body
   const newComTag = await ComedianToTag.create({comedianId, tagId})
-  res.json()
+  const tag = await Tag.findByPk(tagId)
+  res.json(tag)
+  
 }))
 
 router.post("/new/event", asyncHandler (async (req, res) => {
@@ -33,7 +36,8 @@ router.post("/new/event", asyncHandler (async (req, res) => {
 router.post("/event" , asyncHandler (async (req, res) => {
   const {eventId, tagId} = req.body
   const newEvTag = await eventToTag.create({eventId, tagId})
-  res.json()
+  const tag = await Tag.findByPk(tagId)
+  res.json(tag)
 }))
 
 module.exports = router;

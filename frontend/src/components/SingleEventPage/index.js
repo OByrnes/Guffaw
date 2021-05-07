@@ -25,6 +25,7 @@ const SingleEventPage = () => {
     dispatch(getTheOneEvent(id))
     dispatch(getAllTags())
     dispatch(comediansOnShow(id))
+    dispatch(getAllTheComics())
 
   },[dispatch])
   const {currentEvent} = useSelector((state) => state.events)
@@ -36,7 +37,7 @@ const SingleEventPage = () => {
   // console.log(event)
   const handleAddComics = () => {
     setShowComics(true)
-    dispatch(getAllTheComics())
+    console.log(comedian)
   }
 
   useEffect(()=>{
@@ -44,22 +45,31 @@ const SingleEventPage = () => {
       setShowInput(true)
     }
   },[newTag])
-  const handleNewTag = (e) => {
+  const handleNewTag =async (e) => {
     e.preventDefault()
     if (Number(newTag) === 100000){
       
-      dispatch(addAllEventNewTag(id, allNewTag))
+      let tag = await dispatch(addAllEventNewTag(id, allNewTag))
+      currentEvent.Tags.push(tag)
     }else{
-      dispatch(addNewTag(id, newTag))
+      let tag = await dispatch(addNewTag(id, newTag))
+      currentEvent.Tags.push(tag)
+
     }
     setShowInput(false)
   }
-  const addComicToShow = (comicID) => {
+  const addComicToShow =async (comicID) => {
    
-    dispatch(addToShow(comicID, currentEvent.id))
+    let newComic = await dispatch(addToShow(comicID, currentEvent.id))
+    currentEvent.Users.push(newComic)
     setShowComics(false)
   //   }
   }
+  const deleteEvent = (e) => {
+
+    
+  }
+    
   
 
   if((typeof currentEvent == 'undefined' || typeof tags == 'undefined') ) return null
@@ -82,7 +92,7 @@ const SingleEventPage = () => {
             <form onSubmit={handleNewTag}>
             <select onChange={(e)=>setNewTag(e.target.value)}>
               <option></option>
-              {tags.map((tag => (<option value={tag.id} key={tag.id}>{tag.tagText}</option>)))}
+              {tags.map((tag => (<option value={tag.id} key={`${tag.id}${tag.tagText}`}>{tag.tagText}</option>)))}
             <option value={100000}>Other</option>
           </select>
           <input hidden={!showInput} type="text" value={allNewTag} placeholder="new tag"  onChange={(e)=>setAllNewTag(e.target.value)}/>
@@ -95,12 +105,12 @@ const SingleEventPage = () => {
         <Venue venue={currentEvent.Venue}/> 
           {(typeof user!== 'undefined' && currentEvent.host === user.id)? (
         <div className="add_comics_to_show" id="addToShow">
-            
+            <button type='button' className={currentEvent.id} onClick={(e)=>deleteEvent()}><h2>Delete Event</h2></button>
             <button type="button" id={currentEvent.id} onClick={handleAddComics}><h2>Add Comics to Show</h2></button>
           </div>
           ):null}
          {(showComics)?<div className="all_the_comics" hidden={!showComics}>
-          {(typeof comedian!=='undefined')?comedian.map(comic => (<div className="addToShow__comic_holder" onClick={()=>addComicToShow(comic.id)}><ComedianThumbnail comic={comic} /></div>)): null}</div>: null } 
+          {(comedian)?comedian.map(comic => (<div key={comic.id} className="addToShow__comic_holder" onClick={()=>addComicToShow(comic.id)}><ComedianThumbnail comic={comic} /></div>)): null}</div>: null } 
 
         
         <div className="comics-lineup__container">

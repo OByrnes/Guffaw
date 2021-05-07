@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router();
+const { Op } = require("sequelize");
 const { check } = require('express-validator');
+const moment = require('moment')
 const { User, Tag, Event, comedianToTag, eventToTag, eventToType, comedianToEvent, fanToEvent,Type, Venue} = require("../../db/models")
 const {
   singleMulterUpload,
@@ -30,9 +32,25 @@ const asyncHandler = require('express-async-handler');
 // ]
 router.get("/", asyncHandler (async (req, res) =>{
   const events = await Event.findAll({include: [eventToTag, eventToType, Venue]})
+  
+  
   res.json(events)
 }))
-
+router.delete("/:id", asyncHandler (async (req, res) => {
+  const oldEvent = await Event.findByPk(req.params.id)
+  
+    eventToTag.destroy({where: {
+      eventId: oldEvent.id
+    }})
+    eventToType.destroy({where: {
+      eventId: oldEvent.id
+    }})
+    comedianToEvent.destroy({where:{
+      eventId: oldEvent.id
+    }})
+    oldEvent.destroy()
+ res.json({msg:"event deleted"})
+}))
 router.get("/:id", asyncHandler (async (req, res)=>{
   const event = await Event.findByPk(req.params.id, {include: [eventToTag, eventToType, Type, Tag, comedianToEvent, Venue, User]})
 
@@ -46,14 +64,15 @@ router.post("/", singleMulterUpload("image"), asyncHandler (async (req, res) => 
   const newEvent = await Event.create({name, venueId, eventPhoto: eventImageUrl, date, recurring, description, host, ticketed, price})
   types.split(',').forEach( async type => await eventToType.create({eventId: newEvent.id, typeId: Number(type)}))
   
+  
   res.json(newEvent)
 }))
 
 router.put("/:id", asyncHandler (async (req, res) => {
   const {eventId, comedianId} = req.body
   await comedianToEvent.create({comedianId, eventId})
-  let updatedEvent = await Event.findByPk(eventId, {include: [User, Venue, Tag]})
-  res.json(updatedEvent)
+  let comic = await User.findByPk(comedianId)
+  res.json(comic)
 }))
 
 router.post("/addvenue", singleMulterUpload("image"), asyncHandler (async (req, res) => {

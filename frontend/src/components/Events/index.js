@@ -11,6 +11,7 @@ import IndividualEvent from '../IndividualEvent'
 
 
 const Events = () => {
+  const [showPastEvents, setShowPastEvents] = useState(false)
   const dispatch = useDispatch()
   useEffect(()=>{
     dispatch(getAllTheEvents())
@@ -21,19 +22,39 @@ const Events = () => {
     dispatch(AddFanLike(eventId, userId ))
 
   }
+  let upcomingEvents;
+  let pastEvents;
+  if (typeof events !== "undefined"){
+    upcomingEvents = events.filter(event => Date.parse(event.date) > Date.now())
+    pastEvents = events.filter(event => Date.parse(event.date) < Date.now())
+  }
 return (
   <div className="main-content">
   <div className="events-page__container">
     <h1>Events</h1>
     <div className="individual-events__container">
-      {(events !== undefined && events[0] !== undefined)?events.map(event => (<div className="eventContainer"><div className="add_event_icon_holder">
+      {(upcomingEvents)?upcomingEvents.map(event => (<div key={`${event.id}${event.title}`} className="eventContainer"><div className="add_event_icon_holder">
       <div className="heart_container" onClick={()=>handleLikeEvent(event.id, user.id)}>
         <i className="far fa-heart"></i>
 
       </div>
       
-      </div><NavLink to={`/events/${event.id}`}><IndividualEvent key={event.id} event={event} /></NavLink></div>)): null}
+      </div><NavLink to={`/events/${event.id}`}><IndividualEvent event={event} /></NavLink></div>)): null}
     </div>
+    <div className="past-events__container" hidden={showPastEvents}>
+      <div className="past-events__container-header">
+        <h1>Past Events</h1>
+
+      </div>
+      {(pastEvents)? pastEvents.map(event => (<div key={event.id} className="eventContainer"><div className="add_event_icon_holder">
+      <div className="heart_container" onClick={()=>handleLikeEvent(event.id, user.id)}>
+        <i className="far fa-heart"></i>
+
+      </div>
+      
+      </div><NavLink to={`/events/${event.id}`}><IndividualEvent  event={event} /></NavLink></div>)): null}
+    </div>
+
 
   </div>
   </div>

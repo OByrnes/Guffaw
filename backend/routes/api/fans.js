@@ -1,12 +1,15 @@
 const express = require('express')
 const router = express.Router();
+const { Op } = require("sequelize");
+
 
 const { User, Tag, Event, comedianToTag, eventToTag, eventToType, comedianToEvent, fanToEvent,Type, Venue} = require("../../db/models")
 
 const asyncHandler = require('express-async-handler');
 
 router.get("/:id", asyncHandler (async (req, res) => {
-  const fanEvents = await fanToEvent.findAll({where:{fanId:req.params.id}, include: [Event]})
+  const fanEvents = await fanToEvent.findAll({where:{fanId:req.params.id
+    }, include: [Event]})
   res.json(fanEvents)
 }))
 

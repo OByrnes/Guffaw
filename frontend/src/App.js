@@ -19,19 +19,22 @@ Modal.setAppElement('#modalElement');
 
 
 
-function App({dropDownShown}) {
+function App({dropDownShown, searchDropDownShown, setDropDownShown, setSearchDropDownShown }) {
   const dispatch = useDispatch()
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(()=> {
     dispatch(sessionActions.restoreUserThunk()).then(()=> setIsLoaded(true))
   }, [dispatch])
+
+  
   
   const {modalIsOpen, openModal, closeModal, customStyles} = useModalContext()
   const {user} = useSelector((state)=> state.session)
   const {comedians} = useSelector((state)=> state.comedians)
+  
   return isLoaded && (
     <>
-      <Navigation dropDownShown={dropDownShown}/>
+      <Navigation dropDownShown={dropDownShown} setSearchDropDownShown={setSearchDropDownShown} searchDropDownShown={searchDropDownShown}/>
       <Modal
           isOpen={modalIsOpen}
           onRequestClose={closeModal}

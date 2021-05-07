@@ -30,22 +30,28 @@ function Root() {
   const [ dropDownShown, setDropDownShown] = useState(false)
   const [searchDropDownShown, setSearchDropDownShown] = useState(false)
   useEffect(()=>{
+    
     document.addEventListener('click', (e)=> {
+    
       if(e.target.id === 'showDD') setDropDownShown(true)
-      
       else{
         setDropDownShown(false)
+      }
+      if (e.target.id === "searchShow"){
+        setSearchDropDownShown(true)
+      }else{
         setSearchDropDownShown(false)
       }
+      
     })
-   return document.removeEventListener('click', ()=>{})
+    return document.removeEventListener('click', ()=>{})
   },[dropDownShown,searchDropDownShown])
   
   return (
     <Provider store={ store }>
       <ModalProvider>
         <BrowserRouter>
-          <App dropDownShown={dropDownShown} searchDropDownShown={searchDropDownShown}/>
+          <App dropDownShown={dropDownShown} searchDropDownShown={searchDropDownShown} setSearchDropDownShown={setSearchDropDownShown}/>
         </BrowserRouter>
       </ModalProvider>
     </Provider>
