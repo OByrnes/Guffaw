@@ -83,29 +83,17 @@ if (!user) return (
      <section id="contact-me">
                                 <header>
                                     <h2>Reach Out</h2>
+                                    <h2>Olivia Byrnes</h2>
                                 </header>
+                                <div class="contact">
                                 <ul class="social">
                                     
                                     
 										<li><a  href="https://github.com/OByrnes"><i class="fab fa-github-square"></i></a></li>
-										<li><a class="icon brands fa-linkedin-in" href="https://www.linkedin.com/in/olivia-byrnes-85861b1b3/"><span class="label">LinkedIn</span></a></li>
+										<li><a href="https://www.linkedin.com/in/olivia-byrnes-85861b1b3/"><i class="fab fa-linkedin"></i></a></li>
                                 </ul>
-                                <ul  class="contact">
-                                    <li>
-                                        <h3>City</h3>
-                                        <p>
-                                            Dayton, OH 45403
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <h3>E-Mail</h3>
-                                        <p><a href="#">olivia@oliviabyrnes.com</a></p>
-                                    </li>
-                                    <li>
-                                        <h3>Phone</h3>
-                                        <p>(937) 831-2478</p>
-                                    </li>
-                                </ul>
+                                
+                                </div>
                             </section>
    </footer>
   </>

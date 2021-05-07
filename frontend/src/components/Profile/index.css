@@ -11,6 +11,8 @@
   
 }
 footer{
+  opacity: 0;
+  background-color: #2D3142;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -21,11 +23,40 @@ footer{
   justify-items: center;
 
 }
+footer:hover{
+  opacity: 1;
+}
 footer section{
+  margin: 0 auto;
   display: flex;
  flex-direction: column;
+ align-content: center;
  justify-content: center;
   justify-items: center;
+  color:rgb(95, 97, 104);
+}
+section a{
+  text-decoration: none;
+}
+header h2{
+  text-align: center;
+}
+.social{
+  margin: 0 auto;
+}
+.social a{
+  text-decoration: none;
+  color:rgb(95, 97, 104);
+}
+.social a i{
+  font-size: 55px;
+  cursor: pointer;
+  margin: 20px;
+}
+.contact{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
 }
 section ul{
   display: flex;
@@ -36,6 +67,7 @@ section ul{
 }
 section ul li{
   list-style: none;
+  margin: 25px;
 }
 
 .outer-splash{
